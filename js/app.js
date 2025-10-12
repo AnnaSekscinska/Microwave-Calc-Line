@@ -1,0 +1,4 @@
+translator ={
+ "pol": {},
+  "eng": {}
+}
