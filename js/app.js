@@ -24,14 +24,14 @@ function addElement () {
  const newSection = document.createElement('section');
 
  const calcArray = [
-     {title: "Rectangular Waveguide", img: "src=\"img/logoProj.png" },
-     {title: "Microstrip Line", img: "src=\"img/logoProj.png"},
-     {title: "Load Impedance Calculation", img: "src=\"img/logoProj.png"},
-     {title: "Impedance Transformation", img: "src=\"img/logoProj.png"},
-     {title: "VSWR Calculation", img: "src=\"img/logoProj.png"},
-     {title: "Impedance Matching - Single Stub", img: "src=\"img/logoProj.png"},
-     {title: "Impedance Matching - L-section network", img: "src=\"img/logoProj.png"},
-     {title: "Dictionary", img: "src=\"img/logoProj.png"},
+     {title: "Rectangular Waveguide", img: "src=\"img/logoProj.png\"" },
+     {title: "Microstrip Line", img: "src=\"img/logoProj.png\""},
+     {title: "Load Impedance Calculation", img: "src=\"img/logoProj.png\""},
+     {title: "Impedance Transformation", img: "src=\"img/logoProj.png\""},
+     {title: "VSWR Calculation", img: "src=\"img/logoProj.png\""},
+     {title: "Impedance Matching - Single Stub", img: "src=\"img/logoProj.png\""},
+     {title: "Impedance Matching - L-section network", img: "src=\"img/logoProj.png\""},
+     {title: "Dictionary", img: "src=\"img/logoProj.png\""},
  ]
 
  //for (let i=0; i<8; i++) {
@@ -43,7 +43,7 @@ function addElement () {
 
  calcArray.forEach((element) => {
   newSection.innerHTML += "<div class=\"div-calculator\">\n" +
-      "    <img class=\"div-img\" src=\"img/logoProj.png\" alt=\"Logo\"/>\n" +
+      `    <img class=\"div-img\" ${element.img} alt=\"Logo\"/>\n` +
       `   <header class=\"header-calculator\">${element.title}</header>\n` +
       "  </div>"
  })
