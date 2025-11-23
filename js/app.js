@@ -22,6 +22,7 @@
 
 function addElement () {
  const newSection = document.createElement('section');
+ newSection.classList.add("main-container");
 
  const calcArray = [
      {title: "Rectangular Waveguide", img: "src=\"img/logoProj.png\"" },
