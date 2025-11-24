@@ -3,25 +3,21 @@ export function rect_wave() {
 }
 
 export let rect_html = "<div class=\"container\">\n" +
-    "  <h2>Impedance transformation</h2>\n" +
-    "  <p>Generator — Load</p>\n" +
+    "  <h2>Rectangular waveguide</h2>\n" +
+    "  <p>Cutoff frequency calculations</p>\n" +
     "\n" +
     "  <div class=\"parameters\">\n" +
-    "    <label>λ (lambda) = <input type=\"number\" > mm</label>\n" +
-    "    <label>R_L/Z  = <input type=\"number\" ></label>\n" +
-    "    <label>X<sub>L</sub>/Z<sub></sub> = <input type=\"number\"></label>\n" +
-    "    <label>Distance of transformation = <input type=\"number\"> mm</label>\n" +
+    "    <label>a = <input type=\"number\" > mm</label>\n" +
+    "    <label>b = <input type=\"number\" ></label>\n" +
+    "    <label>Eps_r = <input type=\"number\"></label>\n" +
     "  </div>\n" +
     "\n" +
-    "  <div class=\"direction\">\n" +
-    "    <label><input type=\"checkbox\"> Towards generator</label>\n" +
-    "    <label><input type=\"checkbox\"> Towards load</label>\n" +
-    "  </div>\n" +
+
     "\n" +
     "  <button>Calculate</button>\n" +
     "\n" +
     "  <div class=\"result\">\n" +
-    "    normalized Z<sub>L'</sub> = R<sub>L'</sub> + jX<sub>L'</sub> = 00\n" +
+    "    fc_nm = <sub></sub> 00 GHz\n" +
     "  </div>\n" +
     "\n" +
     "  <button class=\"return\">Return to Main Menu</button>\n" +
