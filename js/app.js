@@ -1,7 +1,21 @@
-import {rect_wave} from "./page";
-console.log(rect_wave());
+import {rect_wave} from "./rectWaveguide";
+import {microstripLine} from "./microstripLine";
+import {impedance_calculator} from "./impedanceCalculator";
+import {impedance_transformation} from "./impedanceTransformation";
+import {VSWRCalculation} from "./VSWRCalculation";
+import {impedanceMatchingSS} from "./impedanceMatchingSS";
+import {impedanceMatchingLSN} from "./impedanceMatchingLSN";
+import {dictionary} from "./dictionary";
+//console.log(rect_wave());
 const pageRouter = {
-    rectWaveguide: rect_wave()
+    rectWaveguide: rect_wave(),
+    microstripLine: microstripLine(),
+    impedanceCalculation: impedance_calculator(),
+    impedanceTransformation: impedance_transformation(),
+    VSWRCalculation: VSWRCalculation(),
+    impedanceMatchingSS: impedanceMatchingLSN(),
+    impedanceMatchingLSN: impedanceMatchingLSN() ,
+    dictionary: dictionary()
 }
 
 function addElement () {
