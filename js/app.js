@@ -30,9 +30,15 @@ function switchContent() {
         createMainPage();
     }
 
-    const returnButton = document.getElementById("returnButton");
-    if (returnButton) {
-        returnButton.addEventListener("click", () => {
+    const currentBtn = document.getElementById("currentButton");
+    const returnBtn = document.getElementById("returnButton");
+    if (returnBtn) {
+        returnBtn.addEventListener("click", () => {
+            window.location.hash = "";
+        });
+    }
+    if (currentBtn) {
+        currentBtn.addEventListener("click", () => {
             window.location.hash = "";
         });
     }
