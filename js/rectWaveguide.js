@@ -14,12 +14,12 @@ export let rect_html = "<div class=\"container\">\n" +
     "\n" +
 
     "\n" +
-    "  <button>Calculate</button>\n" +
+    "  <button id=\"calculateButton\">Calculate</button>\n" +
     "\n" +
     "  <div class=\"result\">\n" +
     "    fc_nm = <sub></sub> 00 GHz\n" +
     "  </div>\n" +
     "\n" +
-    "  <button class=\"return\">Return to Main Menu</button>\n" +
+    "  <button id=\"returnButton\" class=\"return\">Return to Main Menu</button>\n" +
     "</div>\n"
 

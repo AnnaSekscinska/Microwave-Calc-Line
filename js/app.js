@@ -26,11 +26,16 @@ function switchContent() {
     console.log(hook);
     if (hash) {
         hook.innerHTML = pageRouter[hash].content;
-    }else{
+    } else {
         createMainPage();
     }
+
+    const returnButton = document.getElementById("returnButton");
+    if (returnButton) {
+        returnButton.addEventListener("click", () => {
+            window.location.hash = "";
+        });
+    }
 }
-
-
 window.addEventListener('hashchange', switchContent);
 window.addEventListener('load', switchContent);
