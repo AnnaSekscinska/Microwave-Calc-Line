@@ -24,7 +24,12 @@ export function createMainPage () {
             "  </div>"
     })
 
-    document.body.appendChild(newSection);
+    const oldMain = document.getElementById("main-container")
+    if (oldMain) {
+
+        document.body.removeChild(oldMain)
+    }
+
     const sectionHeader = document.getElementById("main-header");
 
     sectionHeader.after(newSection);

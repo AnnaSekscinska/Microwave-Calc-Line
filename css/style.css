@@ -19,7 +19,7 @@ body {
   top: 0;
   z-index: 1000;
   padding: 2rem 0;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -67,6 +67,10 @@ body {
   border-radius: 20%;
   display: flex;
   margin-left: 1200px;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .menu a {
@@ -119,14 +123,25 @@ body {
 .main-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: auto;
   gap: 40px;
   justify-items: center;
-  align-items: center;
-  padding: 2rem;
+  align-items: start;
+  /*padding: 2rem;*/
   max-width: 1400px;
   margin: 0 auto;
+  padding: 2rem;
+  flex: 1;
 }
+
+/*.container {
+
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 2rem;
+} */
 
 .div-calculator {
   background-color: #ffffff;
@@ -163,6 +178,7 @@ body {
   color: #ccc;
   padding: 15px;
   font-size: 0.9rem;
+
 }
 
 @media (max-width: 1100px) {
@@ -188,13 +204,21 @@ body {
 
 .container {
   background: rgba(0, 0, 0, 0.2);
-  max-width: 600px;
-  width: 90%;
-  margin: 20px auto 40px;
+  max-width: 1000px;
+  /*width: 90%;*/
+  margin: 20px auto 0;
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+
+}
+
+.content {
+  flex: 1;
 }
 
 .container h2 {
@@ -206,15 +230,19 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin: 20px 0;
-  text-align: left;
+  /*margin: 20px 0;
+  text-align: left;*/
+  align-self: center;
+  margin: 20px;
 }
 
 .parameters label {
   font-weight: 500;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  /*justify-content: space-between;*/
+  grid-template-columns: 80px 150px auto;
   align-items: center;
+  column-gap: 7px;
 }
 
 .parameters input {
@@ -224,6 +252,14 @@ body {
   border-radius: 8px;
 }
 
+.imgCalculator {
+  /*display: flex;
+  flex-direction: column;*/
+  width: 160px;
+  height: auto;
+  margin: 20px;
+  padding: 20px;
+}
 
 .direction {
   display: flex;
@@ -263,10 +299,11 @@ button:hover {
 
 
 .result {
-  margin-top: 20px;
+  margin: 20px;
   font-size: 1.1rem;
   background: #f0f3f9;
   padding: 15px;
   border-radius: 10px;
   border: 1px solid #ddd;
+
 }

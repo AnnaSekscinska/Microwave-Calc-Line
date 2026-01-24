@@ -22,10 +22,20 @@ const pageRouter = {
 function switchContent() {
     const hash = window.location.hash.substring(1);
     console.log(hash);
-    const hook = document.getElementById("main-container");
+    const hook = document.getElementById("main-header");
+    let mainContainer = document.getElementById("main-container");
+    if (mainContainer) {
+        mainContainer.remove();
+    }
+
+    mainContainer = document.createElement('section');
+    mainContainer.classList.add("main-container");
+    mainContainer.id = "main-container";
     console.log(hook);
     if (hash) {
-        hook.innerHTML = pageRouter[hash].content;
+
+        mainContainer.innerHTML = pageRouter[hash].content;
+        hook.after(mainContainer);
     } else {
         createMainPage();
     }
