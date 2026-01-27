@@ -3,7 +3,7 @@ export function rect_wave() {
 }
 
 export let rect_html = "<div class=\"container\">\n" +
-    //"<img class='img_Calculator' src='img/lech.png'>\n" +
+    "<img class='img_Calculator' src='img/rectwaveguide.png'/>\n" +
     "<div class=\"content\">\n" +
     "  <h2>Rectangular waveguide</h2>\n" +
     "  <p>Cutoff frequency calculations</p>\n" +

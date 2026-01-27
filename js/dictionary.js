@@ -3,6 +3,8 @@ export function dictionary () {
 }
 
 export let dictionary_html = "<div class=\"container\">\n" +
+    //"<img class='img_Calculator' src='img/lech.png'>\n" +
+    "<div class=\"content\">\n" +
     "  <h2>Impedance transformation</h2>\n" +
     "  <p>Generator — Load</p>\n" +
     "\n" +
@@ -24,6 +26,6 @@ export let dictionary_html = "<div class=\"container\">\n" +
     "    normalized Z<sub>L'</sub> = R<sub>L'</sub> + jX<sub>L'</sub> = 00\n" +
     "  </div>\n" +
     "\n" +
-    "  <button class=\"return\">Return to Main Menu</button>\n" +
+    "  <button id=\"returnButton\" class=\"return\">Return to Main Menu</button>\n" +
     "</div>\n"
 

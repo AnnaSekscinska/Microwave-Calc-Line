@@ -14,7 +14,7 @@ body {
 }
 
 .header{
-  background-color: #555555;
+  background-color: #1d3557;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -111,13 +111,13 @@ ul {
 
 .main-header {
   text-align: center;
-  padding: 4rem 0;
+  padding: 2rem 0;
   background-color: #e6e6e6;
   border-bottom: 0.2rem solid #ccc;
 }
 
 .main-nagl-title {
-  color: #222;
+  color: #1d3557;
 }
 
 .main-container {
@@ -174,7 +174,7 @@ ul {
 .footer {
   margin-top: auto;
   text-align: center;
-  background-color: #2f2f2f;
+  background-color: #1d3557;
   color: #ccc;
   padding: 15px;
   font-size: 0.9rem;
@@ -204,7 +204,7 @@ ul {
 
 .container {
   background: rgba(0, 0, 0, 0.2);
-  max-width: 1000px;
+  max-width: 1400px;
   /*width: 90%;*/
   margin: 20px auto 0;
   padding: 30px;
@@ -233,7 +233,7 @@ ul {
   /*margin: 20px 0;
   text-align: left;*/
   align-self: center;
-  margin: 20px;
+  margin: 40px;
 }
 
 .parameters label {
@@ -242,7 +242,7 @@ ul {
   /*justify-content: space-between;*/
   grid-template-columns: 80px 150px auto;
   align-items: center;
-  column-gap: 7px;
+  column-gap: 30px;
 }
 
 .parameters input {
@@ -252,13 +252,14 @@ ul {
   border-radius: 8px;
 }
 
-.imgCalculator {
+.img_Calculator {
   /*display: flex;
   flex-direction: column;*/
-  width: 160px;
-  height: auto;
+  width: 500px;
+  height: 400px;
   margin: 20px;
   padding: 20px;
+  /*position: absolute; */
 }
 
 .direction {

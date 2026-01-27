@@ -3,27 +3,30 @@ export function impedance_transformation() {
 }
 
 export let impedanceTransformation_html = "<div class=\"container\">\n" +
-    "  <h2>Impedance transformation</h2>\n" +
-    "  <p>Generator — Load</p>\n" +
-    "\n" +
-    "  <div class=\"parameters\">\n" +
-    "    <label>λ (lambda) = <input type=\"number\" > mm</label>\n" +
-    "    <label>R_L/Z  = <input type=\"number\" ></label>\n" +
-    "    <label>X<sub>L</sub>/Z<sub></sub> = <input type=\"number\"></label>\n" +
-    "    <label>Distance of transformation = <input type=\"number\"> mm</label>\n" +
+    //"<img class='img_Calculator' src='img/lech.png'>\n" +
+    "<div class=\"content\">\n" +
+    "  <h2>Impedance transformation</h2><br>" +
+    "  <p>Generator — Load</p><br>" +
+    "<br>" +
+    "  <div class=\"parameters\"><br>" +
+    "    <label>λ (lambda) = <input type=\"number\" > mm</label><br>" +
+    "    <label>R_L/Z  = <input type=\"number\" ></label><br>" +
+    "    <label>X_L/Z = <input type=\"number\"></label><br>" +
+    "    <label>Distance of transformationd = <input type=\"number\"> mm</label><br>" +
     "  </div>\n" +
     "\n" +
     "  <div class=\"direction\">\n" +
-    "    <label><input type=\"checkbox\"> Towards generator</label>\n" +
-    "    <label><input type=\"checkbox\"> Towards load</label>\n" +
+    "    <label><input type=\"checkbox\"> Towards generator</label><br>" +
+    "    <label><input type=\"checkbox\"> Towards load</label><br>" +
     "  </div>\n" +
     "\n" +
     "  <button>Calculate</button>\n" +
     "\n" +
     "  <div class=\"result\">\n" +
-    "    normalized Z<sub>L'</sub> = R<sub>L'</sub> + jX<sub>L'</sub> = 00\n" +
+    "    normalized ZL' = RL' + jXL' = 00<br>" +
     "  </div>\n" +
     "\n" +
-    "  <button class=\"return\">Return to Main Menu</button>\n" +
+    "  <button id=\"returnButton\" class=\"return\">Return to Main Menu</button>\n" +
+    "</div>\n" +
     "</div>\n"
 

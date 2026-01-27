@@ -7,14 +7,14 @@ export function createMainPage () {
     newSection.classList.add("main-container");
     newSection.id = "main-container";
     const calcArray = [
-        {title: "Rectangular Waveguide", img: "src=\"img/logoProj.png\"", id: "rectWaveguide"},
-        {title: "Microstrip Line", img: "src=\"img/logoProj.png\"", id: "microstripLine"},
-        {title: "Load Impedance Calculation", img: "src=\"img/logoProj.png\"", id: "impedanceCalculation"},
-        {title: "Impedance Transformation", img: "src=\"img/logoProj.png\"", id: "impedanceTransformation"},
-        {title: "VSWR Calculation", img: "src=\"img/logoProj.png\"", id: "VSWRCalculation"},
-        {title: "Impedance Matching - Single Stub", img: "src=\"img/logoProj.png\"", id: "impedanceMatchingSS"},
-        {title: "Impedance Matching - L-section network", img: "src=\"img/logoProj.png\"", id: "impedanceMatchingLSN"},
-        {title: "Dictionary", img: "src=\"img/logoProj.png\"", id: "dictionary"},
+        {title: "Rectangular Waveguide", img: "src=\"img/logo_rectwaveguide.png\"", id: "rectWaveguide"},
+        {title: "Microstrip Line", img: "src=\"img/MS_photo.png\"", id: "microstripLine"},
+        {title: "Load Impedance Calculation", img: "src=\"img/LI_photo.png\"", id: "impedanceCalculation"},
+        {title: "Impedance Transformation", img: "src=\"img/ImpTra_photo.png\"", id: "impedanceTransformation"},
+        {title: "VSWR Calculation", img: "src=\"img/VSWR-photo.png\"", id: "VSWRCalculation"},
+        {title: "Impedance Matching - Single Stub", img: "src=\"img/ImpMatSS_photo.png\"", id: "impedanceMatchingSS"},
+        {title: "Impedance Matching - L-section network", img: "src=\"img/mpMatchL_photo.png\"", id: "impedanceMatchingLSN"},
+        {title: "Dictionary", img: "src=\"img/dictionary_photo.png\"", id: "dictionary"},
     ]
 
     calcArray.forEach((element) => {
