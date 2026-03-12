@@ -3,7 +3,7 @@ export function impedance_transformation() {
 }
 
 export let impedanceTransformation_html = "<div class=\"container\">\n" +
-    //"<img class='img_Calculator' src='img/lech.png'>\n" +
+    "<img class='img_Calculator' src='img/ImpedanceTransformation .png'/>\n" +
     "<div class=\"content\">\n" +
     "  <h2>Impedance transformation</h2><br>" +
     "  <p>Generator — Load</p><br>" +

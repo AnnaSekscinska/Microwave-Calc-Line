@@ -1,31 +1,30 @@
 export function microstripLine() {
-    return{hash: "#microstrip_line", content: microstripLine_html}
+    return {hash: "#microstrip_line", content: microstripLine_html}
 }
 
-export let microstripLine_html = "<div class=\"container\">\n" +
-    //"<img class='img_Calculator' src='img/lech.png'>\n" +
-    "<div class=\"content\">\n" +
-    "  <h2>Impedance transformation</h2>\n" +
-    "  <p>Generator — Load</p>\n" +
-    "\n" +
-    "  <div class=\"parameters\">\n" +
-    "    <label>λ (lambda) = <input type=\"number\" > mm</label>\n" +
-    "    <label>R_L/Z  = <input type=\"number\" ></label>\n" +
-    "    <label>X<sub>L</sub>/Z<sub></sub> = <input type=\"number\"></label>\n" +
-    "    <label>Distance of transformation = <input type=\"number\"> mm</label>\n" +
-    "  </div>\n" +
-    "\n" +
-    "  <div class=\"direction\">\n" +
-    "    <label><input type=\"checkbox\"> Towards generator</label>\n" +
-    "    <label><input type=\"checkbox\"> Towards load</label>\n" +
-    "  </div>\n" +
-    "\n" +
-    "  <button>Calculate</button>\n" +
-    "\n" +
-    "  <div class=\"result\">\n" +
-    "    normalized Z<sub>L'</sub> = R<sub>L'</sub> + jX<sub>L'</sub> = 00\n" +
-    "  </div>\n" +
-    "\n" +
-    "  <button id=\"returnButton\" class=\"return\">Return to Main Menu</button>\n" +
-    "</div>\n"
+export let microstripLine_html =
+    "<div class=\"container\">\n" +
+    "  <div class=\"content\">\n" +
 
+    "  <h2>Microstrip Line</h2>\n" +
+    "  <p>Analysis and Synthesis</p>\n" +
+
+    "  <div class=\"parameters\">\n" +
+    "    <label>H = <input type=\"number\"> mm</label>\n" +
+    "    <label>Eps_r = <input type=\"number\"></label>\n" +
+    "    <label>Z0 = <input type=\"number\"> Ohm</label>\n" +
+    "    <label>f = <input type=\"number\"> GHz</label>\n" +
+    "  </div>\n" +
+
+
+    "  <button>Calculate</button>\n" +
+
+    "  <div class=\"result\">\n" +
+    "    W = ... mm" +
+    "Eps_eff = ... lambda = ... mm " +
+    "  </div>\n" +
+
+    "  <button id=\"returnButton\" class=\"return\">Return to Main Menu</button>\n" +
+
+    "  </div>\n" +
+    "</div>\n";

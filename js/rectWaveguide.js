@@ -10,7 +10,7 @@ export let rect_html = "<div class=\"container\">\n" +
     "\n" +
     "  <div class=\"parameters\">\n" +
     "    <label>a = <input type=\"number\" >mm</label>\n" +
-    "    <label>b = <input type=\"number\" >  </label>\n" +
+    "    <label>b = <input type=\"number\" >mm</label>\n" +
     "    <label>Eps_r = <input type=\"number\">  </label>\n" +
     "  </div>\n" +
     "\n" +
