@@ -1,29 +1,92 @@
+import {sqrt} from "mathjs";
+
 export function rect_wave() {
     return{hash: "#rect_wave", content: rect_html}
 }
 
-export let rect_html = "<div class=\"container\">\n" +
-    "<img class='img_Calculator' src='img/rectwaveguide.png'/>\n" +
-    "<div class=\"content\">\n" +
-    "  <h2>Rectangular waveguide</h2>\n" +
-    "  <p>Cutoff frequency calculations</p>\n" +
-    "\n" +
-    "  <div class=\"parameters\">\n" +
-    "    <label>a = <input type=\"number\" >mm</label>\n" +
-    "    <label>b = <input type=\"number\" >mm</label>\n" +
-    "    <label>Eps_r = <input type=\"number\">  </label>\n" +
-    "  </div>\n" +
-    "\n" +
 
-    "\n" +
-    "  <button id=\"calculateButton\">Calculate</button>\n" +
-    "\n" +
-    "  <div class=\"result\">\n" + " fc_01 = 00 GHz<br>" + " fc_02 = 00 GHz <br>" + " fc_03 = 00 GHz <br>" + " fc_10 = 00 GHz<br>" + " fc_20 = 00 GHz<br>" + " fc_30 = 00 GHz<br>" + " fc_11 = 00 GHz<br>" + " fc_12 = 00 GHz<br>" + " fc_13 = 00 GHz<br>" +
-    "n <input type=\"number\"> m <input type=\"number\">  " + " <br> fc_nm = <sub></sub> 00 GHz\n" +
-    "  </div>\n" +
-    "\n" +
-    "  <button id=\"returnButton\" class=\"return\">Return to Main Menu</button>\n" +
-    "</div>\n" +
-"</div>\n"
+function rectHTMLCalculator(a, b, eps_r, m, n, c, fc, mi_r) {
+    a =document.getElementById("A_parameter").value;
+    b =document.getElementById("B_parameter").value;
+    eps_r =document.getElementById("Epsr_parameter").value;
+    m =document.getElementById("M_parameter").value;
+    n =document.getElementById("N_parameter").value;
+    c = 300000000;
+    mi_r = 1;
+    fc = document.getElementById("fc_result").value;
+
+    a = parseFloat(a);
+    b = parseFloat(b);
+    eps_r= parseFloat(eps_r);
+    m = parseFloat(m);
+    n = parseFloat(n);
+    fc = parseFloat(fc);
+
+    if (a === "" || b === "" || eps_r === "" || m === "" || n === "") {
+        alert("Wprowadź wszystkie wartości!");
+    } else if (eps_r === 1){
+        fc = (c/2)*sqrt((m/a)*(m/a)+(n/b)*(n/b));
+        document.getElementById("fc_result").innerHTML = "f<sub>c(m,n)</sub> = " + fc;
+        console.log(fc);
+    } else {
+        fc = ((c/(2*sqrt(eps_r*mi_r)))*sqrt((m/a)*(m/a)+(n/b)*(n/b)));
+        document.getElementById("fc_result").innerHTML = "f<sub>c(m,n)</sub> = " + fc;
+        console.log(fc);
+    }
+    let mList = [0,0,0,1,2,3,1,1,1];
+    let nList = [1,2,3,0,0,0,1,2,3];
+    let fmn = "";
+
+    for (let i = 0; i < mList.length; i++) {
+        if (eps_r === 1){
+            const res = (c/2)*sqrt(((mList[i]/a)*(mList[i]/a))+((nList[i]/b)*(nList[i]/b)));
+            fmn+=`f <sub>c(${mList[i]},${nList[i]})</sub> = ${res}<br>`
+            document.getElementById("fmn_result").innerHTML = fmn;
+            console.log(fmn);
+        } else {
+            const res = ((c/(2*sqrt(eps_r*mi_r)))*sqrt(((mList[i]/a)*(mList[i]/a))+((nList[i]/b)*(nList[i]/b))))
+            fmn+=`f <sub>c(${mList[i]},${nList[i]})</sub> = ${res}<br>`
+            document.getElementById("fmn_result").innerHTML = fmn;
+            console.log(fmn);
+        }
+    }
+    //document.getElementById("fc_result").innerHTML = fc;
+    //document.getElementById("fmn_result").innerHTML = fmn;
+}
+
+document.addEventListener("click", function(event) {
+    if (event.target && event.target.id === "calculateButton_rect") {
+        rectHTMLCalculator();
+    }
+});
+
+export let rect_html = "<div class=\"container\">\n" +
+    "<img class='img_Calculator' src='img/rectwaveguide.png'/>" +
+
+    "<div class=\"content\">" +
+
+    "  <h2>Rectangular waveguide</h2>" +
+
+    "  <p>Cutoff frequency calculations</p>" +
+
+    "  <div class=\"parameters\">" +
+    "    <label>a = <input type=\"number\" id='A_parameter'>mm</label>" +
+    "    <label>b = <input type=\"number\" id='B_parameter'>mm</label>" +
+    "    <label>Eps_r = <input type=\"number\" id='Epsr_parameter'>  </label>" +
+    "    <label>n <input type=\"number\" id='N_parameter'></label>" +
+    "    <label>m <input type=\"number\" id='M_parameter'></label> " +
+    "  </div>" +
+
+    "  <button id=\"calculateButton_rect\">Calculate</button>" +
+
+    "  <div  class=\"fcmn_results\" id='fcmn_results'>" +
+    "<span id='fmn_result'></span>" +
+
+    "<span id='fc_result'> " +
+    "  </div>" +
+
+    "  <button id=\"returnButton\" class=\"return\">Return to Main Menu</button>" +
+    "</div>" +
+"</div>"
 
 
