@@ -4,7 +4,7 @@ export function microstripLine() {
     return {hash: "#microstrip_line", content: microstripLine_html}
 }
 
-function analysis_microstripLineCalculator(h, eps_r, f, eps_eff, w, c, lambda, z0) {
+function analysis_microstripLineCalculator(h, eps_r, f, eps_eff, w, lambda, z0) {
 
     h = document.getElementById("h_parameter").value;
     eps_r = document.getElementById("eps_r_parameter").value;
@@ -12,7 +12,7 @@ function analysis_microstripLineCalculator(h, eps_r, f, eps_eff, w, c, lambda, z
     //z0 = document.getElementById("z0_parameter").value;
     eps_eff = document.getElementById("eps_eff_result").value;
     w = document.getElementById("w_parameter").value;
-    c = 300000000;
+    const c = 300000000;
 
 
     h = parseFloat(h);
@@ -24,7 +24,7 @@ function analysis_microstripLineCalculator(h, eps_r, f, eps_eff, w, c, lambda, z
 
     if (h === "" || eps_r === "" || f === "" || w === "") {
         alert("Wprowadź wszystkie wartości!");
-    } else if (h >= w) { //ZAPYTAC ADY I KAPIEGO
+    } else if (h >= w) {
         eps_eff = (((eps_r+1)/2)+((eps_r-1)/2)*(1/(sqrt(1+12*h/w))+0.04*(1-w/h)*(1-w/h)))
         document.getElementById("eps_eff_result").innerHTML = "Epsilon<sub>eff</sub> = " + eps_eff;
         z0 = (60/sqrt(eps_eff))*Math.log((8*h/w)+(w/(4*h)))
