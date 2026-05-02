@@ -78,6 +78,17 @@ document.addEventListener("click", function(event) {
     }
 });
 
+document.addEventListener('change', function(e) {
+    if (e.target.type === 'checkbox' && (e.target.closest('.direction') || e.target.closest('.parameters'))) {
+        const parent = e.target.closest('.direction') || e.target.closest('.parameters');
+        const checkboxes = parent.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach(cb => {
+            if (cb !== e.target) cb.checked = false;
+        });
+    }
+});
+
 
 
 export let impedanceCalculator_html =

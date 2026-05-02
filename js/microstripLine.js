@@ -6,23 +6,16 @@ export function microstripLine() {
 
 function analysis_microstripLineCalculator(h, eps_r, f, eps_eff, w, lambda, z0) {
 
-    h = document.getElementById("h_parameter").value;
-    eps_r = document.getElementById("eps_r_parameter").value;
-    f = document.getElementById("f_parameter").value;
-    //z0 = document.getElementById("z0_parameter").value;
-    eps_eff = document.getElementById("eps_eff_result").value;
-    w = document.getElementById("w_parameter").value;
+    h = parseFloat(document.getElementById("h_parameter").value);
+    eps_r = parseFloat(document.getElementById("eps_r_parameter").value);
+    f = parseFloat(document.getElementById("f_parameter").value);
+    eps_eff = parseFloat(document.getElementById("eps_eff_result").value);
+    w = parseFloat(document.getElementById("w_parameter").value);
     const c = 300000000;
 
-
-    h = parseFloat(h);
-    eps_r = parseFloat(eps_r);
-    f = parseFloat(f);
     z0 = parseFloat(z0);
-    eps_eff = parseFloat(eps_eff);
-    w = parseFloat(w);
 
-    if (h === "" || eps_r === "" || f === "" || w === "") {
+    if (isNaN(h) || isNaN(eps_r) || isNaN(f) || isNaN(w)) {
         alert("Wprowadź wszystkie wartości!");
     } else if (h >= w) {
         eps_eff = (((eps_r+1)/2)+((eps_r-1)/2)*(1/(sqrt(1+12*h/w))+0.04*(1-w/h)*(1-w/h)))
@@ -53,7 +46,6 @@ function synthesis_microstripLineCalculator(h, eps_r, f, eps_eff, w, c, lambda, 
     f = document.getElementById("f_parameter").value;
     z0 = document.getElementById("z0_parameter").value;
     eps_eff = document.getElementById("eps_eff_result").value;
-    //w = document.getElementById("w_parameter").value;
     c = 300000000;
 
 
@@ -67,7 +59,7 @@ function synthesis_microstripLineCalculator(h, eps_r, f, eps_eff, w, c, lambda, 
     let C = ((377*Math.PI)/(2*z0*sqrt(eps_r)));
     let D = (z0/60)*(sqrt((eps_r+1)/2))+((eps_r-1)/(eps_r+1))*(0.23+0.11/eps_r)
     let stosunek_wh;
-    if (h === "" || eps_r === "" || f === "" || z0 === "") {
+    if (isNaN(h) || isNaN(eps_r) || isNaN(f) || isNaN(z0)) {
         alert("Wprowadź wszystkie wartości!");
     } else if (document.getElementById("szeroka_linia").checked) {
         stosunek_wh = (2/Math.PI)*(C-1-Math.log(2*C-1)+((eps_r-1)/(2*eps_r))*(Math.log(C-1)+0.39-(0.61/eps_r)))
@@ -95,6 +87,17 @@ document.addEventListener("click", function(event) {
     }
 });
 
+document.addEventListener('change', function(e) {
+    if (e.target.type === 'checkbox' && (e.target.closest('.direction') || e.target.closest('.parameters'))) {
+        const parent = e.target.closest('.direction') || e.target.closest('.parameters');
+        const checkboxes = parent.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach(cb => {
+            if (cb !== e.target) cb.checked = false;
+        });
+    }
+});
+
 export let microstripLine_html =
     "<div class=\"container\">\n" +
     "  <div class=\"content\">\n" +
@@ -108,8 +111,8 @@ export let microstripLine_html =
     "    <label>Eps_r = <input type=\"number\" id='eps_r_parameter'></label>" +
     "    <label>Z0 = <input type=\"number\" id='z0_parameter'> Ohm</label>" +
     "    <label>f = <input type=\"number\" id='f_parameter'> GHz</label>" +
-    "    <label><input type=\"checkbox\" id='waska_linia'>Linia wąska</label>\n" +
-    "    <label><input type=\"checkbox\" id='szeroka_linia'>Linia szeroka</label>\n" +
+    "    <label><input type='checkbox' id='waska_linia'>Linia wąska</label>\n" +
+    "    <label><input type='checkbox' id='szeroka_linia'>Linia szeroka</label>\n" +
     "  </div>" +
 
 

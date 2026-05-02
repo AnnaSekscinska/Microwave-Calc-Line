@@ -100,14 +100,14 @@ function wyswietlWyniki(wyniki) {
 
     wyniki.forEach((w) => {
         resDiv.innerHTML += `
-            <div style="margin-top:15px; border-top:2px solid #444; padding-top:10px;">
-                <strong style="color: #007bff;">${w.opis}</strong><br>
-                <div style="background: #f8f9fa; padding: 5px; margin: 5px 0; border-radius: 4px;">
+            <div>
+                <strong style>${w.opis}</strong><br>
+                <div style=>
                     <code>b = ${w.b_norm.toFixed(4)} | x = ${w.x_norm.toFixed(4)}</code><br>
                     <code>B = ${w.B_real.toFixed(6)} S | X = ${w.X_real.toFixed(2)} Ω</code>
                 </div>
-                <b>Element szeregowy:</b> ${w.szeregowy.typ} = <strong>${formatUnits(w.szeregowy.wartosc, w.szeregowy.typ.includes("L") ? "H" : "F")}</strong><br>
-                <b>Element równoległy:</b> ${w.rownolegly.typ} = <strong>${formatUnits(w.rownolegly.wartosc, w.rownolegly.typ.includes("L") ? "H" : "F")}</strong>
+                ${w.szeregowy.typ} = <strong>${formatUnits(w.szeregowy.wartosc, w.szeregowy.typ.includes("L") ? "H" : "F")}</strong><br>
+                ${w.rownolegly.typ} = <strong>${formatUnits(w.rownolegly.wartosc, w.rownolegly.typ.includes("L") ? "H" : "F")}</strong>
             </div>`;
     });
 }
