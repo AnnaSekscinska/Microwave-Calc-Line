@@ -123,24 +123,23 @@ document.addEventListener('change', function(e) {
 export let impedanceMatchingSS_html = "<div class=\"container\">\n" +
     "<img class='img_Calculator' src='img/SS.png'/>\n" +
     "<div class=\"content\">\n" +
-    "  <h2>Single Stub Matching Circuit</h2>\n" +
+    "  <h2 data-key='titleSS'>Single Stub Matching Circuit</h2>\n" +
     "\n" +
     "  <div class=\"parameters\">\n" +
     "    <label>R_L = <input type=\"number\" id='RL_element' > Ohm</label>\n" +
-    "    <label>X_L  = <input type=\"number\" id='XL_element'> Ohm</label>\n" +
-    "    <label>Line impedance</label>\n" +
+    "    <label>X_L = <input type=\"number\" id='XL_element'> Ohm</label>\n" +
     "    <label>Z0 = <input type=\"number\" id='Z0_element'> Ohm</label>\n" +
     "  </div>\n" +
     "\n" +
     "  <div class=\"direction\">\n" +
-    "<label>Pick the configuration</label>\n" +
-    "    <label><input type=\"checkbox\" id='szer_rozw'> szeregowy rozwarty </label>\n" +
-    "    <label><input type=\"checkbox\" id='szer_zw'> szeregowy zwarty</label>\n" +
-    "    <label><input type=\"checkbox\" id='row_rozw'> rownolegly rozwarty</label>\n" +
-    "    <label><input type=\"checkbox\" id='row_zw'> rownolegly zwarty </label>\n" +
+    "<label data-key='paragraphSS'>Pick the configuration</label>\n" +
+    "    <label><input type='checkbox' id='szer_rozw'> <span data-key='checkboxSS1'>Single open-circuited stub</span></label>\n" +
+    "    <label><input type='checkbox' id='szer_zw'> <span data-key='checkboxSS2'>Single short-circuited stub</span></label>\n" +
+    "    <label><input type='checkbox' id='row_rozw'> <span data-key='checkboxSS3'>Single open-circuited shunt stub</span></label>\n" +
+    "    <label><input type='checkbox' id='row_zw'> <span data-key='checkboxSS4'>Single short-circuited shunt stub</span></label>\n" +
     "  </div>\n" +
     "\n" +
-    "  <button id='Calculatebutton_IMSS'>Calculate</button>\n" +
+    "  <button id='Calculatebutton_IMSS' data-key='buttonClc'>Calculate</button>\n" +
     "\n" +
     "  <div class=\"Solution1\" id='Solution1' >\n" +
     "   <span id='Solution1_result'>" +
@@ -151,6 +150,6 @@ export let impedanceMatchingSS_html = "<div class=\"container\">\n" +
     "</span>" +
     "  </div>\n" +
     "\n" +
-    "  <button id=\"returnButton\" class=\"return\">Return to Main Menu</button>\n" +
+    "  <button id=\"returnButton\" class=\"return\" data-key='buttonRtn'>Return to Main Menu</button>\n" +
     "</div>\n"
 

@@ -120,14 +120,14 @@ export let VSWRCalculation_html = `
 <div class="container">
     <img class='img_Calculator' src='img/VSWR.png'/>
     <div class="content">
-        <h2>VSWR calculation</h2>
+        <h2 data-key="titleVSWR">VSWR calculation</h2>
         
         <div class="parameters">
             <label>Z0 = <input type="number" id="Z0_element" > <span>Ω</span></label>
         </div>
 
         <div class="direction">
-            <p>Pick the parameter to enter:</p>
+            <p data-key="paragraphVSWR">Pick the parameter to enter:</p>
             <label><input type="checkbox" name="paramType" value="vswr"> VSWR & arg(G)</label>
             <label><input type="checkbox" name="paramType" value="absG"> |G| & arg(G)</label>
             <label><input type="checkbox" name="paramType" value="reImG"> Re(G) & Im(G)</label>
@@ -141,11 +141,11 @@ export let VSWRCalculation_html = `
              
         </div>
 
-        <button id="VSWRBtn">Calculate</button>
+        <button id="VSWRBtn" data-key="buttonClc">Calculate</button>
 
         <div id="results"></div>
 
-        <button id="returnButton" class="return">Return to Main Menu</button>
+        <button id="returnButton" class="return" data-key="buttonRtn">Return to Main Menu</button>
     </div>
 </div>
 `;

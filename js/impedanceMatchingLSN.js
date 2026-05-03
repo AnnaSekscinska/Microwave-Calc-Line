@@ -121,16 +121,16 @@ document.addEventListener("click", function(event) {
 export let impedanceMatchingLSN_html =
     "<div class='container'>" +
     "  <div class='content'>" +
-    "    <h2>L-section Matching Network</h2>" +
+    "    <h2 data-key='titleLSN'>L-section Matching Network</h2>" +
     "    <div class='parameters'>" +
     "      <label><span>R<sub>L</sub> [Ω]</span><input type='number' id='RLparameter'></label>" +
     "      <label><span>X<sub>L</sub> [Ω]</span><input type='number' id='XLparameter'></label>" +
     "      <label><span>Z<sub>0</sub> [Ω]</span><input type='number' id='Z0parameter'></label>" +
     "      <label><span>f [MHz]</span><input type='number' id='fparameter'></label>" +
     "    </div>" +
-    "    <div class='result'><span id='ZLresult'>Z<sub>L</sub> = ?</span></div>" +
-    "    <button id='calculateButton' class='calculate'>Calculate</button>" +
+    "    <div class='result'></div>" +
+    "    <button id='calculateButton' class='calculate' data-key='buttonClc'>Calculate</button>" +
     "    <div id='finalResults'></div>" +
-    "    <button id='returnButton' class='return'>Return to Main Menu</button>" +
+    "    <button id='returnButton' class='return' data-key='buttonRtn'>Return to Main Menu</button>" +
     "  </div>" +
     "</div>";

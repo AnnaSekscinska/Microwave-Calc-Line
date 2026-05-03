@@ -98,45 +98,45 @@ export let impedanceCalculator_html =
 
     "  <div class='content'>" +
 
-    "    <h2>Impedance Calculator</h2>" +
-    "    <p>Generator — Load</p>" +
+    "    <h2 data-key='titleImpCalc'>Impedance Calculator</h2>" +
+    "    <p data-key='paragraphImpCalc1'>Generator — Load</p>" +
 
     "    <div class='parameters'>" +
 
     "      <label>" +
-    "        <span>λ (lambda)</span>" +
+    "        <span>λ = </span>" +
     "        <input type='number' id='lambda_parameter'>" +
     "        <span>mm</span>" +
     "      </label>" +
 
     "      <label>" +
-    "        <span>SWR</span>" +
+    "        <span>SWR = </span>" +
     "        <input type='number' id='swr_parameter'>" +
     "      </label>" +
 
     "      <label>" +
-    "        <span>d</span>" +
+    "        <span>d = </span>" +
     "        <input type='number' id='d_parameter'>" +
     "        <span>mm</span>" +
     "      </label>" +
 
     "    </div>" +
 
-    "    <p>Distance between Load and minimum of wave distribution</p>" +
+    "    <p data-key='paragraphImpCalc2'>Distance between Load and minimum of wave distribution</p>" +
 
     "    <div class='direction'>" +
-    "      <label><input type='checkbox' id='current_wave'> Current wave</label>" +
-    "      <label><input type='checkbox' id='voltage_wave'> Voltage wave</label>" +
+    "   <label><input type='checkbox' id='current_wave'> <span data-key='checkboxImpCalc1'>Current wave</span></label>" +
+    "   <label><input type='checkbox' id='voltage_wave'> <span data-key='checkboxImpCalc2'>Voltage wave</span></label>" +
     "    </div>" +
 
-    "    <button id='loadImpedance_calculate'>Calculate</button>" +
+    "    <button id='loadImpedance_calculate' data-key='buttonClc'>Calculate</button>" +
 
     "    <div class='result'>" +
     "       <span id='zl_result'>" +
     "       </span>" +
     "    </div>" +
 
-    "    <button id='returnButton' class='return'>Return to Main Menu</button>" +
+    "    <button id='returnButton' class='return' data-key='buttonRtn'>Return to Main Menu</button>" +
 
     "  </div>" +
 

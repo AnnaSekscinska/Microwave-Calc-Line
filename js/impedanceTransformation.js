@@ -60,22 +60,26 @@ document.addEventListener('change', function(e) {
     export let impedanceTransformation_html = "<div class=\"container\">\n" +
         "<img class='img_Calculator' src='img/ImpedanceTransformation .png'/>\n" +
         "<div class=\"content\">\n" +
-        "  <h2>Impedance transformation</h2><br>" +
-        "  <p>Generator — Load</p><br>" +
+        "  <h2 data-key='titleImpTrans'>Impedance transformation</h2><br>" +
+        "  <p data-key='paragraphImpTrans'>Generator — Load</p><br>" +
         "<br>" +
         "  <div class=\"parameters\"><br>" +
-        "    <label>λ (lambda) = <input type=\"number\" id='lam_parameter'> mm</label><br>" +
+        "    <label>λ = <input type=\"number\" id='lam_parameter'> mm</label><br>" +
         "    <label>R_L/Z  = <input type=\"number\" id='RLZ0_parameter'></label><br>" +
         "    <label>X_L/Z = <input type=\"number\" id='XLZ0_parameter'></label><br>" +
-        "    <label>Distance of transformationd = <input type=\"number\" id='distance_parameter'> mm</label><br>" +
+        "    <label>" +
+        "        <span data-key='parameterImpTrans'>Distance of transformation =</span>" +
+        "        <input type='number' id='distance_parameter'>" +
+        "        <span data-key='unit_mm'>mm</span>" +
+        "    </label><br>" +
         "  </div>\n" +
         "\n" +
         "  <div class=\"direction\">\n" +
-        "    <label><input type=\"checkbox\" id='TowardsGenerator_check'> Towards generator</label><br>" +
-        "    <label><input type=\"checkbox\" id='TowardsLoad_check'> Towards load</label><br>" +
+        "    <label><input type='checkbox' id='TowardsGenerator_check'> <span data-key='checkboxImpTrans1'>Towards generator</span></label><br>" +
+        "    <label><input type='checkbox' id='TowardsLoad_check'> <span data-key='checkboxImpTrans2'>Towards load</span></label><br>" +
         "  </div>\n" +
         "\n" +
-        "  <button id='impedanceTransformation_calcBtn'>Calculate</button>\n" +
+        "  <button id='impedanceTransformation_calcBtn' data-key='buttonClc'>Calculate</button>\n" +
         "\n" +
         "  <div class=\"result\" id='results'>\n" +
         " <span id='TG_result'> " +
@@ -84,7 +88,7 @@ document.addEventListener('change', function(e) {
         " </span>" +
         "  </div>\n" +
         "\n" +
-        "  <button id=\"returnButton\" class=\"return\">Return to Main Menu</button>\n" +
+        "  <button id=\"returnButton\" class=\"return\" data-key='buttonRtn'>Return to Main Menu</button>\n" +
         "</div>\n" +
         "</div>\n"
 

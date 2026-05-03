@@ -102,8 +102,8 @@ export let microstripLine_html =
     "<div class=\"container\">\n" +
     "  <div class=\"content\">\n" +
 
-    "  <h2>Microstrip Line</h2>\n" +
-    "  <p>Analysis and Synthesis</p>\n" +
+    "  <h2 data-key='titleMicrostrip'>Microstrip Line</h2>\n" +
+    "  <p data-key='paragraphMicrostrip'>Analysis and Synthesis</p>\n" +
 
     "  <div class=\"parameters\">" +
     "    <label>H = <input type=\"number\" id='h_parameter'> mm</label>" +
@@ -111,13 +111,13 @@ export let microstripLine_html =
     "    <label>Eps_r = <input type=\"number\" id='eps_r_parameter'></label>" +
     "    <label>Z0 = <input type=\"number\" id='z0_parameter'> Ohm</label>" +
     "    <label>f = <input type=\"number\" id='f_parameter'> GHz</label>" +
-    "    <label><input type='checkbox' id='waska_linia'>Linia wąska</label>\n" +
-    "    <label><input type='checkbox' id='szeroka_linia'>Linia szeroka</label>\n" +
+    "<label><input type='checkbox' id='waska_linia'> <span data-key='checkboxLine1'>Narrow Line</span></label>\n" +
+    "<label><input type='checkbox' id='szeroka_linia'> <span data-key='checkboxLine2'>Wide Line</span></label>\n" +
     "  </div>" +
 
 
-    "  <button id='analysisButton_microstripLine'>Analysis</button>" +
-    "  <button id='synthesisButton_microstripLine'>Synthesis</button>" +
+    "  <button id='analysisButton_microstripLine' data-key='buttonAnalysis'>Analysis</button>" +
+    "  <button id='synthesisButton_microstripLine' data-key='buttonSynthesis'>Synthesis</button>" +
 
     "  <div class='microstripLine_result' id='microstripLine_result' >" +
     "<span id='eps_eff_result'>" +
@@ -128,7 +128,7 @@ export let microstripLine_html =
     "</span>" +
     "  </div>\n" +
 
-    "  <button id=\"returnButton\" class=\"return\">Return to Main Menu</button>\n" +
+    "  <button id=\"returnButton\" class=\"return\" data-key='buttonRtn'>Return to Main Menu</button>\n" +
 
     "  </div>\n" +
     "</div>\n";

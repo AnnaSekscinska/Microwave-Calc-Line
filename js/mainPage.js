@@ -2,6 +2,8 @@ export function main_page() {
     return{hash: "#rect_wave", content: main_page_html}
 }
 
+
+
 export function createMainPage () {
     const newSection = document.createElement('section');
     newSection.classList.add("main-container");

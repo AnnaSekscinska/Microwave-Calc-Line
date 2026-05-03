@@ -7,6 +7,14 @@ import {impedanceMatchingSS} from "./impedanceMatchingSS";
 import {impedanceMatchingLSN} from "./impedanceMatchingLSN";
 import {dictionary} from "./dictionary";
 import {createMainPage} from "./mainPage";
+import {changeLanguage} from "./languageDictionary";
+
+window.changeLanguage = changeLanguage;
+
+document.addEventListener("DOMContentLoaded", () => {
+    changeLanguage('eng');
+})
+
 
 const pageRouter = {
     rectWaveguide: rect_wave(),

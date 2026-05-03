@@ -19,14 +19,14 @@
     <figure class="logo-container">
       <img class="logo" src="img/logoProj.png" alt="Logo"/>
       <figcaption class="logo-figcaption">   <ul class="menu" id="menu">
-        <li><button id="currentButton" class="current">Main Page</button></li>
+        <li><button id="currentButton" class="current" data-key="main_page">Main Page</button></li>
       </ul></figcaption>
     </figure>
 
     <nav>
       <ul>
-        <li><a class="flag" href="#"><img class="flags" src="img/english_flag.png" alt="engflag"/></a></li>
-        <li><a class="flag" href="#"><img class="flags" src="img/polish_flag.png" alt="plflag"/></a></li>
+        <li><a class="flag"  onclick="changeLanguage('eng')"><img class="flags" src="img/english_flag.png" alt="engflag"/></a></li>
+        <li><a class="flag"  onclick="changeLanguage('pl')"><img class="flags" src="img/polish_flag.png" alt="plflag"/></a></li>
       </ul>
     </nav>
   </div>

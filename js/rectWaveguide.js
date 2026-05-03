@@ -65,19 +65,19 @@ export let rect_html = "<div class=\"container\">\n" +
 
     "<div class=\"content\">" +
 
-    "  <h2>Rectangular waveguide</h2>" +
+    "  <h2 data-key='titleRect'>Rectangular waveguide</h2>" +
 
-    "  <p>Cutoff frequency calculations</p>" +
+    "  <p data-key='paragraphRect'>Cutoff frequency calculations</p>" +
 
     "  <div class=\"parameters\">" +
     "    <label>a = <input type=\"number\" id='A_parameter'>mm</label>" +
     "    <label>b = <input type=\"number\" id='B_parameter'>mm</label>" +
     "    <label>Eps_r = <input type=\"number\" id='Epsr_parameter'>  </label>" +
-    "    <label>n <input type=\"number\" id='N_parameter'></label>" +
-    "    <label>m <input type=\"number\" id='M_parameter'></label> " +
+    "    <label>n = <input type=\"number\" id='N_parameter'></label>" +
+    "    <label>m = <input type=\"number\" id='M_parameter'></label> " +
     "  </div>" +
 
-    "  <button id=\"calculateButton_rect\">Calculate</button>" +
+    "  <button id=\"calculateButton_rect\" data-key='buttonClc'>Calculate</button>" +
 
     "  <div  class=\"fcmn_results\" id='fcmn_results'>" +
     "<span id='fmn_result'></span>" +
@@ -85,7 +85,7 @@ export let rect_html = "<div class=\"container\">\n" +
     "<span id='fc_result'> " +
     "  </div>" +
 
-    "  <button id=\"returnButton\" class=\"return\">Return to Main Menu</button>" +
+    "  <button id=\"returnButton\" class=\"return\" data-key='buttonRtn'>Return to Main Menu</button>" +
     "</div>" +
 "</div>"
 
