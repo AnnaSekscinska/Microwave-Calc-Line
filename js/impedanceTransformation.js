@@ -57,29 +57,42 @@ document.addEventListener('change', function(e) {
     }
 });
 
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        const calcBtn = document.getElementById("impedanceTransformation_calcBtn");
+        if (calcBtn) {
+            impedanceTransformationCalculator();
+        }
+    }
+});
+
     export let impedanceTransformation_html = "<div class=\"container\">\n" +
         "<img class='img_Calculator' src='img/ImpedanceTransformation .png'/>\n" +
         "<div class=\"content\">\n" +
         "  <h2 data-key='titleImpTrans'>Impedance transformation</h2><br>" +
         "  <p data-key='paragraphImpTrans'>Generator — Load</p><br>" +
         "<br>" +
-        "  <div class=\"parameters\"><br>" +
-        "    <label>λ = <input type=\"number\" id='lam_parameter'> mm</label><br>" +
-        "    <label>R_L/Z  = <input type=\"number\" id='RLZ0_parameter'></label><br>" +
-        "    <label>X_L/Z = <input type=\"number\" id='XLZ0_parameter'></label><br>" +
+        "  <div class=\"parameters\">" +
+        "    <label>λ = <input type=\"number\" id='lam_parameter'> mm</label>" +
+        "    <label><span>R<sub>L</sub>/Z = </span><input type=\"number\" id='RLZ0_parameter'></label>" +
+        "    <label><span>X<sub>L</sub>/Z = </span><input type=\"number\" id='XLZ0_parameter'></label>" +
         "    <label>" +
         "        <span data-key='parameterImpTrans'>Distance of transformation =</span>" +
         "        <input type='number' id='distance_parameter'>" +
-        "        <span data-key='unit_mm'>mm</span>" +
-        "    </label><br>" +
+        "        <span>mm</span>" +
+        "    </label>" +
         "  </div>\n" +
         "\n" +
         "  <div class=\"direction\">\n" +
+        "   <div class='container-checkbox'> " +
         "    <label><input type='checkbox' id='TowardsGenerator_check'> <span data-key='checkboxImpTrans1'>Towards generator</span></label><br>" +
         "    <label><input type='checkbox' id='TowardsLoad_check'> <span data-key='checkboxImpTrans2'>Towards load</span></label><br>" +
         "  </div>\n" +
+        "  </div>\n" +
         "\n" +
+        "  <div class=\"container-button\">" +
         "  <button id='impedanceTransformation_calcBtn' data-key='buttonClc'>Calculate</button>\n" +
+        "  </div>\n" +
         "\n" +
         "  <div class=\"result\" id='results'>\n" +
         " <span id='TG_result'> " +

@@ -1,7 +1,7 @@
 import { sqrt } from "mathjs";
 
 export function impedanceMatchingLSN() {
-    return { hash: "#rect_wave", content: impedanceMatchingLSN_html }
+    return { hash: "#lsn_matching", content: impedanceMatchingLSN_html }
 }
 
 function formatUnits(val, unit) {
@@ -22,7 +22,8 @@ function CalculateLSN() {
         return;
     }
 
-    document.getElementById("ZLresult").innerHTML = `Z<sub>L</sub> = ${RL} + j${XL} Ω`;
+    const sign = XL >= 0 ? "+" : "";
+   // document.getElementById("ZLresult").innerHTML = `Z<sub>L</sub> = ${RL} ${sign} j${XL} Ω`;
 
     const f = fMHz * 1e6;
     const omega = 2 * Math.PI * f;
@@ -32,7 +33,7 @@ function CalculateLSN() {
     let wyniki = [];
 
     if (RL < Z0) {
-
+        // Przypadek 1: RL < Z0
         const b_val = Math.sqrt((1 - rL) / rL);
         const x_val = Math.sqrt(rL * (1 - rL));
 
@@ -44,10 +45,10 @@ function CalculateLSN() {
         pary.forEach((p, i) => {
             let B = p.b / Z0;
             let X = p.x * Z0;
-            wyniki.push(interpretujElementy(p.b, p.x, B, X, omega, `Opcja ${i+1} (RL < Z0)`));
+            wyniki.push(interpretujElementy(p.b, p.x, B, X, omega, `#${i+1}`));
         });
     } else {
-
+        // Przypadek 2: RL > Z0
         const mianownik = Math.pow(rL, 2) + Math.pow(xL, 2);
         const pierwiastek = Math.sqrt(rL * (Math.pow(rL, 2) + Math.pow(xL, 2) - rL));
 
@@ -62,11 +63,11 @@ function CalculateLSN() {
         pary.forEach((p, i) => {
             let B = p.b / Z0;
             let X = p.x * Z0;
-            wyniki.push(interpretujElementy(p.b, p.x, B, X, omega, `Opcja ${i+1} (RL > Z0)`));
+            wyniki.push(interpretujElementy(p.b, p.x, B, X, omega, `#${i+1}`));
         });
     }
 
-    wyswietlWyniki(wyniki);
+  wyswietlWyniki(wyniki);
 }
 
 function interpretujElementy(b_norm, x_norm, B, X, omega, opis) {
@@ -80,12 +81,14 @@ function interpretujElementy(b_norm, x_norm, B, X, omega, opis) {
         rownolegly: {}
     };
 
+    // Element szeregowy (X)
     if (X > 0) {
         el.szeregowy = { typ: "Cewka (L)", wartosc: X / omega };
     } else {
         el.szeregowy = { typ: "Kondensator (C)", wartosc: -1 / (X * omega) };
     }
 
+    // Element równoległy (B)
     if (B > 0) {
         el.rownolegly = { typ: "Kondensator (C)", wartosc: B / omega };
     } else {
@@ -96,21 +99,24 @@ function interpretujElementy(b_norm, x_norm, B, X, omega, opis) {
 
 function wyswietlWyniki(wyniki) {
     const resDiv = document.getElementById("finalResults");
+    if (!resDiv) return;
+
     resDiv.innerHTML = "";
 
     wyniki.forEach((w) => {
         resDiv.innerHTML += `
-            <div>
-                <strong style>${w.opis}</strong><br>
-                <div style=>
+            <div class="result-option">
+                <strong>Rozwiązanie ${w.opis}</strong>
+                <div>
                     <code>b = ${w.b_norm.toFixed(4)} | x = ${w.x_norm.toFixed(4)}</code><br>
                     <code>B = ${w.B_real.toFixed(6)} S | X = ${w.X_real.toFixed(2)} Ω</code>
                 </div>
-                ${w.szeregowy.typ} = <strong>${formatUnits(w.szeregowy.wartosc, w.szeregowy.typ.includes("L") ? "H" : "F")}</strong><br>
-                ${w.rownolegly.typ} = <strong>${formatUnits(w.rownolegly.wartosc, w.rownolegly.typ.includes("L") ? "H" : "F")}</strong>
+                <p style="margin: 4px 0;">Szeregowy: <b>${w.szeregowy.typ} = ${formatUnits(w.szeregowy.wartosc, w.szeregowy.typ.includes("L") ? "H" : "F")}</b></p>
+                <p style="margin: 4px 0;">Równoległy: <b>${w.rownolegly.typ} = ${formatUnits(w.rownolegly.wartosc, w.rownolegly.typ.includes("L") ? "H" : "F")}</b></p>
             </div>`;
     });
 }
+
 
 document.addEventListener("click", function(event) {
     if (event.target && event.target.id === "calculateButton") {
@@ -118,19 +124,40 @@ document.addEventListener("click", function(event) {
     }
 });
 
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        const calcBtn = document.getElementById("calculateButton");
+        if (calcBtn) {
+            CalculateLSN();
+        }
+    }
+});
+
 export let impedanceMatchingLSN_html =
     "<div class='container'>" +
+    " <img class='img_Calculator' src='img/imgLMSN.png'/> " +
     "  <div class='content'>" +
     "    <h2 data-key='titleLSN'>L-section Matching Network</h2>" +
+
+
     "    <div class='parameters'>" +
-    "      <label><span>R<sub>L</sub> [Ω]</span><input type='number' id='RLparameter'></label>" +
-    "      <label><span>X<sub>L</sub> [Ω]</span><input type='number' id='XLparameter'></label>" +
-    "      <label><span>Z<sub>0</sub> [Ω]</span><input type='number' id='Z0parameter'></label>" +
-    "      <label><span>f [MHz]</span><input type='number' id='fparameter'></label>" +
+    "      <label><span>R<sub>L</sub> =</span> <input type='number' id='RLparameter'> <span>Ω</span></label>" +
+    "      <label><span>X<sub>L</sub> =</span> <input type='number' id='XLparameter'> <span>Ω</span></label>" +
+    "      <label><span>Z<sub>0</sub> =</span> <input type='number' id='Z0parameter'> <span>Ω</span></label>" +
+    "      <label><span>f =</span> <input type='number' id='fparameter'> <span>MHz</span></label>" +
     "    </div>" +
-    "    <div class='result'></div>" +
-    "    <button id='calculateButton' class='calculate' data-key='buttonClc'>Calculate</button>" +
-    "    <div id='finalResults'></div>" +
+
+    "    <div class='button-group'>" +
+    "    <div class='container-button'>" +
+    "      <button id='calculateButton' class='calculate' data-key='buttonClc'>Calculate</button>" +
+    "    </div>" +
+    "    </div>" +
+
+    "    <div class='microstripLine_result' id='results_container'>" +
+    "      <span id='ZLresult'></span>" +
+   "      <div id='finalResults'></div>" +
+    "    </div>" +
+
     "    <button id='returnButton' class='return' data-key='buttonRtn'>Return to Main Menu</button>" +
     "  </div>" +
     "</div>";

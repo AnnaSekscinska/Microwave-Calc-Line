@@ -19,18 +19,18 @@ function analysis_microstripLineCalculator(h, eps_r, f, eps_eff, w, lambda, z0) 
         alert("Wprowadź wszystkie wartości!");
     } else if (h >= w) {
         eps_eff = (((eps_r+1)/2)+((eps_r-1)/2)*(1/(sqrt(1+12*h/w))+0.04*(1-w/h)*(1-w/h)))
-        document.getElementById("eps_eff_result").innerHTML = "Epsilon<sub>eff</sub> = " + eps_eff;
+        document.getElementById("eps_eff_result").innerHTML = "<span>ε<sub>r</sub> = </span>" + eps_eff;
         z0 = (60/sqrt(eps_eff))*Math.log((8*h/w)+(w/(4*h)))
         document.getElementById("z0_result").innerHTML = "Z<sub>0</sub> = " + z0;
     } else if (h < w) {
-        eps_eff = (((eps_r+1)/2)+((eps_r-1)/(2*sqrt(1+12*h/w)))) // DODAC SYMBOL EPSILON
-        document.getElementById("eps_eff_result").innerHTML = "Epsilon<sub>eff</sub> = " + eps_eff;
+        eps_eff = (((eps_r+1)/2)+((eps_r-1)/(2*sqrt(1+12*h/w))))
+        document.getElementById("eps_eff_result").innerHTML = "<span>ε<sub>r</sub> = </span>" + eps_eff;
         z0 = 120*Math.PI/(sqrt(eps_eff)*((w/h)+1.393+0.667*Math.log(w/h+1.444)))
         document.getElementById("z0_result").innerHTML = "Z<sub>0</sub> = " + z0;
     }
 
     lambda = c/(f*sqrt(eps_eff))
-    document.getElementById("lambda_result").innerHTML = "λ (lambda) = " + lambda;
+    document.getElementById("lambda_result").innerHTML = "λ = " + lambda;
 }
 
 document.addEventListener("click", function(event) {
@@ -66,18 +66,18 @@ function synthesis_microstripLineCalculator(h, eps_r, f, eps_eff, w, c, lambda, 
         w = stosunek_wh*h ;
         document.getElementById("z0_result").innerHTML = "w = " + w;
         eps_eff = (((eps_r+1)/2)+((eps_r-1)/2)*(1/(sqrt(1+12*h/w))))
-        document.getElementById("eps_eff_result").innerHTML = "Epsilon<sub>eff</sub> = " + eps_eff;
+        document.getElementById("eps_eff_result").innerHTML = "<span>ε<sub>r</sub> = </span>" + eps_eff;
     } else if (document.getElementById("waska_linia").checked) {
         stosunek_wh = (8 * Math.pow(Math.E, D)) / (Math.pow(Math.E, 2 * D) - 2)
         w = stosunek_wh * h;
         document.getElementById("z0_result").innerHTML = "w = " + w;
         eps_eff = (((eps_r + 1) / 2) + ((eps_r - 1) / 2) * (1 / (sqrt(1 + 12 * h / w))))
-        document.getElementById("eps_eff_result").innerHTML = "Epsilon<sub>eff</sub> = " + eps_eff;
+        document.getElementById("eps_eff_result").innerHTML = "<span>ε<sub>r</sub> = </span>" + eps_eff;
     }
 
 
         lambda = c/(f*sqrt(eps_eff))
-    document.getElementById("lambda_result").innerHTML = "λ (lambda) = " + lambda;
+    document.getElementById("lambda_result").innerHTML = "λ = " + lambda;
     }
 
 
@@ -98,8 +98,23 @@ document.addEventListener('change', function(e) {
     }
 });
 
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        const wValue = document.getElementById("w_parameter").value;
+        const z0Value = document.getElementById("z0_parameter").value;
+
+        if (wValue !== "") {
+            analysis_microstripLineCalculator();
+        } else if (z0Value !== "") {
+            synthesis_microstripLineCalculator();
+        }
+    }
+});
+
+
 export let microstripLine_html =
     "<div class=\"container\">\n" +
+    " <img class='img_Calculator' src='img/imgMicroStripLine.png'/> " +
     "  <div class=\"content\">\n" +
 
     "  <h2 data-key='titleMicrostrip'>Microstrip Line</h2>\n" +
@@ -108,16 +123,19 @@ export let microstripLine_html =
     "  <div class=\"parameters\">" +
     "    <label>H = <input type=\"number\" id='h_parameter'> mm</label>" +
     "    <label>w = <input type=\"number\" id='w_parameter'> mm</label>" +
-    "    <label>Eps_r = <input type=\"number\" id='eps_r_parameter'></label>" +
-    "    <label>Z0 = <input type=\"number\" id='z0_parameter'> Ohm</label>" +
+    "    <label><span>ε<sub>r</sub> = </span><input type=\"number\" id='eps_r_parameter'></label>" +
+    "    <label><span>Z<sub>0</sub> = </span><input type=\"number\" id='z0_parameter'>Ω</label>" +
     "    <label>f = <input type=\"number\" id='f_parameter'> GHz</label>" +
+    " <div class='container-checkbox'> " +
     "<label><input type='checkbox' id='waska_linia'> <span data-key='checkboxLine1'>Narrow Line</span></label>\n" +
     "<label><input type='checkbox' id='szeroka_linia'> <span data-key='checkboxLine2'>Wide Line</span></label>\n" +
     "  </div>" +
+    "</div>\n" +
 
-
+    " <div class='container-button'> " +
     "  <button id='analysisButton_microstripLine' data-key='buttonAnalysis'>Analysis</button>" +
     "  <button id='synthesisButton_microstripLine' data-key='buttonSynthesis'>Synthesis</button>" +
+    "</div>\n" +
 
     "  <div class='microstripLine_result' id='microstripLine_result' >" +
     "<span id='eps_eff_result'>" +

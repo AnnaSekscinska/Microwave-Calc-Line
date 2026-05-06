@@ -2,7 +2,7 @@ const language = {
     pl: 1,
     eng: 0
 }
-let curr_lang = "eng";
+export let curr_lang = localStorage.getItem("language") || "pl";
 const dic = {
     main_page: ["Main page", "Strona główna"],
     buttonClc: ["Calculate", "Oblicz"],
@@ -26,7 +26,7 @@ const dic = {
     //Impedance Transformation
     titleImpTrans: ["Impedance transformation", "Transformacja impedancji"],
     paragraphImpTrans: ["Generator — Load", "Generator — Obciążenie"],
-    parameterImpTrans: ["Distance of transformation", "Dystans transformacji"],
+    parameterImpTrans: ["Distance = ", "Dystans = "],
     checkboxImpTrans1: ["Towards generator", "W kierunku generatora"],
     checkboxImpTrans2: ["Towards load", "W kierunku ładunku"],
     //VSWR
@@ -41,12 +41,16 @@ const dic = {
     checkboxSS4: ["Single short-circuited shunt stub", "Strojnik równoległy zwarty"],
     //L-section matching network
     titleLSN: ["L-section Matching Network", "Układ dopasowujący typu L"],
+    // Dictionary
+    titleDictionary: ["Dictionary", "Słownik"]
 
 
 }
 
 export function changeLanguage(newLang) {
     curr_lang = newLang;
+
+    localStorage.setItem("language", curr_lang);
     const langIdx = language[curr_lang];
 
 

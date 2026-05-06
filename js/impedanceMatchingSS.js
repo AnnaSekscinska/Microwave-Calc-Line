@@ -97,9 +97,9 @@ function impedanceMatchingSSCalculator(RL, XL, Z0){
     });
 
     document.getElementById("Solution1_result").innerHTML =
-        `<b>Solution #1:</b> d1/λ = ${solutions[0].d.toFixed(5)}, l1/λ = ${solutions[0].l.toFixed(5)}`;
+        `<b>#1:</b> d1/λ = ${solutions[0].d.toFixed(5)}, l1/λ = ${solutions[0].l.toFixed(5)}`;
     document.getElementById("Solution2_result").innerHTML =
-        `<b>Solution #2:</b> d2/λ = ${solutions[1].d.toFixed(5)}, l2/λ = ${solutions[1].l.toFixed(5)}`;
+        `<b>#2:</b> d2/λ = ${solutions[1].d.toFixed(5)}, l2/λ = ${solutions[1].l.toFixed(5)}`;
 }
 
 document.addEventListener("click", function(event) {
@@ -119,6 +119,16 @@ document.addEventListener('change', function(e) {
     }
 });
 
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        const calcBtn = document.getElementById("Calculatebutton_IMSS");
+        if (calcBtn) {
+            impedanceMatchingSSCalculator();
+        }
+    }
+});
+
+
 
 export let impedanceMatchingSS_html = "<div class=\"container\">\n" +
     "<img class='img_Calculator' src='img/SS.png'/>\n" +
@@ -126,20 +136,26 @@ export let impedanceMatchingSS_html = "<div class=\"container\">\n" +
     "  <h2 data-key='titleSS'>Single Stub Matching Circuit</h2>\n" +
     "\n" +
     "  <div class=\"parameters\">\n" +
-    "    <label>R_L = <input type=\"number\" id='RL_element' > Ohm</label>\n" +
-    "    <label>X_L = <input type=\"number\" id='XL_element'> Ohm</label>\n" +
-    "    <label>Z0 = <input type=\"number\" id='Z0_element'> Ohm</label>\n" +
+    "    <label><span>R<sub>L</sub> = </span><input type=\"number\" id='RL_element' >Ω</label>\n" +
+    "    <label><span>X<sub>L</sub> = </span> <input type=\"number\" id='XL_element'>Ω</label>\n" +
+    "    <label><span>Z<sub>0</sub> = </span><input type=\"number\" id='Z0_element'>Ω</label>\n" +
     "  </div>\n" +
     "\n" +
     "  <div class=\"direction\">\n" +
     "<label data-key='paragraphSS'>Pick the configuration</label>\n" +
+    " <div class='container-checkbox'> " +
     "    <label><input type='checkbox' id='szer_rozw'> <span data-key='checkboxSS1'>Single open-circuited stub</span></label>\n" +
     "    <label><input type='checkbox' id='szer_zw'> <span data-key='checkboxSS2'>Single short-circuited stub</span></label>\n" +
+    "</div>" +
+    " <div class='container-checkbox'> " +
     "    <label><input type='checkbox' id='row_rozw'> <span data-key='checkboxSS3'>Single open-circuited shunt stub</span></label>\n" +
     "    <label><input type='checkbox' id='row_zw'> <span data-key='checkboxSS4'>Single short-circuited shunt stub</span></label>\n" +
     "  </div>\n" +
+    "  </div>\n" +
     "\n" +
+    " <div class='container-button'> " +
     "  <button id='Calculatebutton_IMSS' data-key='buttonClc'>Calculate</button>\n" +
+    "  </div>\n" +
     "\n" +
     "  <div class=\"Solution1\" id='Solution1' >\n" +
     "   <span id='Solution1_result'>" +

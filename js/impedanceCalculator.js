@@ -89,6 +89,15 @@ document.addEventListener('change', function(e) {
     }
 });
 
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        const calcBtn = document.getElementById("loadImpedance_calculate");
+        if (calcBtn) {
+            loadImpedanceCalculator();
+        }
+    }
+});
+
 
 
 export let impedanceCalculator_html =
@@ -125,11 +134,14 @@ export let impedanceCalculator_html =
     "    <p data-key='paragraphImpCalc2'>Distance between Load and minimum of wave distribution</p>" +
 
     "    <div class='direction'>" +
+    "   <div class='container-checkbox'> " +
     "   <label><input type='checkbox' id='current_wave'> <span data-key='checkboxImpCalc1'>Current wave</span></label>" +
     "   <label><input type='checkbox' id='voltage_wave'> <span data-key='checkboxImpCalc2'>Voltage wave</span></label>" +
     "    </div>" +
-
+    "    </div> " +
+    "  <div class=\"container-button\">" +
     "    <button id='loadImpedance_calculate' data-key='buttonClc'>Calculate</button>" +
+    "    </div>" +
 
     "    <div class='result'>" +
     "       <span id='zl_result'>" +

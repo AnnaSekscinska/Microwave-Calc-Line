@@ -2,6 +2,7 @@ export function VSWRCalculation() {
     return {hash: "#VSWRCalculation", content: VSWRCalculation_html}
 }
 
+
 document.addEventListener('change', function(e) {
     if (e.target && e.target.name === 'paramType') {
         const container = document.getElementById('dynamicInputs');
@@ -22,13 +23,19 @@ document.addEventListener('change', function(e) {
 });
 
 
+function fmt(n) {
+    if (typeof n !== 'number' || isNaN(n)) return n;
+    if (!isFinite(n)) return "+infinity";
+    return parseFloat(n.toFixed(5));
+}
+
 function VSWRCalculation_calculator() {
-    const Z0 = parseFloat(document.getElementById('Z0_element').value) ;
+    const Z0 = parseFloat(document.getElementById('Z0_element').value);
     const selected = document.querySelector('input[name="paramType"]:checked');
     if (!selected) return;
 
-    const val1 = parseFloat(document.getElementById('v1').value) ;
-    const val2 = parseFloat(document.getElementById('v2').value) ;
+    const val1 = parseFloat(document.getElementById('v1').value) || 0;
+    const val2 = parseFloat(document.getElementById('v2').value) || 0;
     const toRad = Math.PI / 180;
 
     let ReG, ImG;
@@ -49,7 +56,7 @@ function VSWRCalculation_calculator() {
             break;
         case 'rxNorm':
             let Mz = Math.pow(val1 + 1, 2) + Math.pow(val2, 2);
-            ReG = (Math.pow(val1, 2) - 1 + Math.pow(val2, 2)) / Mz;
+            ReG = (Math.pow(val1, 2) + Math.pow(val2, 2) - 1) / Mz;
             ImG = (2 * val2) / Mz;
             break;
         case 'gbNorm':
@@ -60,48 +67,70 @@ function VSWRCalculation_calculator() {
         case 'RXReal':
             let r_n = val1 / Z0, x_n = val2 / Z0;
             let Mz_r = Math.pow(r_n + 1, 2) + Math.pow(x_n, 2);
-            ReG = (Math.pow(r_n, 2) - 1 + Math.pow(x_n, 2)) / Mz_r;
+            ReG = (Math.pow(r_n, 2) + Math.pow(x_n, 2) - 1) / Mz_r;
             ImG = (2 * x_n) / Mz_r;
             break;
         case 'GBReal':
-            let g_n = val1 * Z0, b_n = val2 * Z0;
-            let My_g = Math.pow(g_n + 1, 2) + Math.pow(b_n, 2);
-            ReG = (1 - Math.pow(g_n, 2) - Math.pow(b_n, 2)) / My_g;
-            ImG = (-2 * b_n) / My_g;
+            let gn = val1 * Z0, bn = val2 * Z0;
+            let My_g = Math.pow(gn + 1, 2) + Math.pow(bn, 2);
+            ReG = (1 - Math.pow(gn, 2) - Math.pow(bn, 2)) / My_g;
+            ImG = (-2 * bn) / My_g;
             break;
     }
 
 
-    const absG = Math.sqrt(ReG**2 + ImG**2);
-    const vswr = (1 + absG) / (1 - absG);
-    const argG = Math.atan2(ImG, ReG) / toRad;
+    let currentAbsG = Math.sqrt(ReG**2 + ImG**2);
+    let argG_deg = Math.atan2(ImG, ReG) / toRad;
 
-    const Dz = Math.pow(1 - ReG, 2) + ImG**2;
-    const r = (1 - ReG**2 - ImG**2) / Dz;
-    const x = (2 * ImG) / Dz;
 
-    const Dy = Math.pow(1 + ReG, 2) + ImG**2;
-    const g = (1 - ReG**2 - ImG**2) / Dy;
-    const b = (-2 * ImG) / Dy;
+    const Dz = Math.pow(1 - ReG, 2) + Math.pow(ImG, 2);
+    let r_calc = (1 - Math.pow(ReG, 2) - Math.pow(ImG, 2)) / Dz;
+    let x_calc = (2 * ImG) / Dz;
+
+    const Dy = Math.pow(1 + ReG, 2) + Math.pow(ImG, 2);
+    let g_calc = (1 - Math.pow(ReG, 2) - Math.pow(ImG, 2)) / Dy;
+    let b_calc = (-2 * ImG) / Dy;
+
+
+    let displayAbsG = currentAbsG;
+    let displayVSWR = (1 + currentAbsG) / (1 - currentAbsG);
+    let displayR = r_calc;
+    let displayG = g_calc;
+
+    if (currentAbsG >= 1) {
+        displayAbsG = 1;
+        displayVSWR = "+infinity";
+        displayR = 0;
+        displayG = 0;
+    }
 
 
     document.getElementById('results').innerHTML = `
-        <pre>
-        VSWR: ${vswr.toFixed(3)}
-        |G|: ${absG.toFixed(4)}, arg(G): ${argG.toFixed(2)}°
-        Re(G): ${ReG.toFixed(4)}, Im(G): ${ImG.toFixed(4)}
-        r: ${r.toFixed(4)}, x: ${x.toFixed(4)}
-        g: ${g.toFixed(4)}, b: ${b.toFixed(4)}
-        R: ${(r * Z0).toFixed(2)} Ω, X: ${(x * Z0).toFixed(2)} Ω
-        G: ${(g / Z0).toExponential(3)} S, B: ${(b / Z0).toExponential(3)} S
-        </pre>
+        <div style="text-align: center; padding: 15px; font-family: monospace; line-height: 2; white-space: pre;">
+VSWR: ${displayVSWR === "+infinity" ? displayVSWR : fmt(displayVSWR)}
+
+|G|: ${fmt(displayAbsG)}, arg(G): ${fmt(argG_deg)} deg
+
+Re(G): ${fmt(ReG)}, Im(G): ${fmt(ImG)}
+
+r: ${fmt(displayR)}, +jx: ${fmt(x_calc)}
+
+g: ${fmt(displayG)}, +jb: ${fmt(b_calc)}
+
+R: ${fmt(displayR * Z0)} Ohm, +jX: ${fmt(x_calc * Z0)} Ohm
+
+G: ${fmt(displayG / Z0)} S, +jB: ${fmt(b_calc / Z0)} S
+        </div>
     `;
 }
+
+
 document.addEventListener("click", function(event) {
     if (event.target && event.target.id === "VSWRBtn") {
         VSWRCalculation_calculator();
     }
 });
+
 
 document.addEventListener('change', function(e) {
     if (e.target.type === 'checkbox' && (e.target.closest('.direction') || e.target.closest('.parameters'))) {
@@ -114,6 +143,14 @@ document.addEventListener('change', function(e) {
     }
 });
 
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        const calcBtn = document.getElementById("VSWRBtn");
+        if (calcBtn) {
+            VSWRCalculation_calculator();
+        }
+    }
+});
 
 
 export let VSWRCalculation_html = `
@@ -123,7 +160,7 @@ export let VSWRCalculation_html = `
         <h2 data-key="titleVSWR">VSWR calculation</h2>
         
         <div class="parameters">
-            <label>Z0 = <input type="number" id="Z0_element" > <span>Ω</span></label>
+            <label><span>Z<sub>0</sub> = </span><input type="number" id="Z0_element" value="50"> <span>Ω</span></label>
         </div>
 
         <div class="direction">
@@ -136,12 +173,12 @@ export let VSWRCalculation_html = `
             <label><input type="checkbox" name="paramType" value="RXReal"> R + jX (Ω)</label>
             <label><input type="checkbox" name="paramType" value="GBReal"> G + jB (S)</label>
         </div>
+        
+        <div id="dynamicInputs" class="parameters"></div>
 
-        <div id="dynamicInputs" class="parameters">
-             
+        <div class='container-button'> 
+            <button id="VSWRBtn" data-key="buttonClc">Calculate</button>
         </div>
-
-        <button id="VSWRBtn" data-key="buttonClc">Calculate</button>
 
         <div id="results"></div>
 

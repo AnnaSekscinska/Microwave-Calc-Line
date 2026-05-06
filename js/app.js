@@ -7,12 +7,12 @@ import {impedanceMatchingSS} from "./impedanceMatchingSS";
 import {impedanceMatchingLSN} from "./impedanceMatchingLSN";
 import {dictionary} from "./dictionary";
 import {createMainPage} from "./mainPage";
-import {changeLanguage} from "./languageDictionary";
+import {changeLanguage, curr_lang} from "./languageDictionary";
 
 window.changeLanguage = changeLanguage;
 
 document.addEventListener("DOMContentLoaded", () => {
-    changeLanguage('eng');
+    changeLanguage(curr_lang);
 })
 
 
@@ -48,6 +48,11 @@ function switchContent() {
         createMainPage();
     }
 
+
+    if (typeof window.changeLanguage === "function") {
+        window.changeLanguage(localStorage.getItem("language") || "pl");
+    }
+
     const currentBtn = document.getElementById("currentButton");
     const returnBtn = document.getElementById("returnButton");
     if (returnBtn) {
@@ -61,5 +66,8 @@ function switchContent() {
         });
     }
 }
+
+
+
 window.addEventListener('hashchange', switchContent);
 window.addEventListener('load', switchContent);
