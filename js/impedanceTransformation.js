@@ -36,7 +36,7 @@ function impedanceTransformationCalculator(lam, RLZ, XLZ, distance){
 
     const sign = xL_prime >= 0 ? "+" : "";
     document.getElementById("results").innerHTML =
-        `normalized Z_L' = R_L' + jX_L' = <br><b>${rL_prime.toFixed(15)}${sign}${xL_prime.toFixed(15)}i</b>`;
+        `normalized Z_L = ${rL_prime.toFixed(5)}${sign}${xL_prime.toFixed(5)}i`;
 
 }
 

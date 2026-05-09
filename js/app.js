@@ -30,7 +30,7 @@ const pageRouter = {
 function switchContent() {
     const hash = window.location.hash.substring(1);
     console.log(hash);
-    const hook = document.getElementById("main-header");
+    const hook = document.getElementById("header");
     let mainContainer = document.getElementById("main-container");
     if (mainContainer) {
         mainContainer.remove();

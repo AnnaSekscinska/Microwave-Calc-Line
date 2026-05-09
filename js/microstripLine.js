@@ -19,17 +19,22 @@ function analysis_microstripLineCalculator(h, eps_r, f, eps_eff, w, lambda, z0) 
         alert("Wprowadź wszystkie wartości!");
     } else if (h >= w) {
         eps_eff = (((eps_r+1)/2)+((eps_r-1)/2)*(1/(sqrt(1+12*h/w))+0.04*(1-w/h)*(1-w/h)))
+
         document.getElementById("eps_eff_result").innerHTML = "<span>ε<sub>r</sub> = </span>" + eps_eff;
         z0 = (60/sqrt(eps_eff))*Math.log((8*h/w)+(w/(4*h)))
+
         document.getElementById("z0_result").innerHTML = "Z<sub>0</sub> = " + z0;
     } else if (h < w) {
         eps_eff = (((eps_r+1)/2)+((eps_r-1)/(2*sqrt(1+12*h/w))))
+
         document.getElementById("eps_eff_result").innerHTML = "<span>ε<sub>r</sub> = </span>" + eps_eff;
         z0 = 120*Math.PI/(sqrt(eps_eff)*((w/h)+1.393+0.667*Math.log(w/h+1.444)))
+
         document.getElementById("z0_result").innerHTML = "Z<sub>0</sub> = " + z0;
     }
 
     lambda = c/(f*sqrt(eps_eff))
+
     document.getElementById("lambda_result").innerHTML = "λ = " + lambda;
 }
 
@@ -54,7 +59,7 @@ function synthesis_microstripLineCalculator(h, eps_r, f, eps_eff, w, c, lambda, 
     f = parseFloat(f);
     z0 = parseFloat(z0);
     eps_eff = parseFloat(eps_eff);
-    w = parseFloat(w);
+    //w = parseFloat(w);
 
     let C = ((377*Math.PI)/(2*z0*sqrt(eps_r)));
     let D = (z0/60)*(sqrt((eps_r+1)/2))+((eps_r-1)/(eps_r+1))*(0.23+0.11/eps_r)
@@ -64,19 +69,24 @@ function synthesis_microstripLineCalculator(h, eps_r, f, eps_eff, w, c, lambda, 
     } else if (document.getElementById("szeroka_linia").checked) {
         stosunek_wh = (2/Math.PI)*(C-1-Math.log(2*C-1)+((eps_r-1)/(2*eps_r))*(Math.log(C-1)+0.39-(0.61/eps_r)))
         w = stosunek_wh*h ;
+
         document.getElementById("z0_result").innerHTML = "w = " + w;
         eps_eff = (((eps_r+1)/2)+((eps_r-1)/2)*(1/(sqrt(1+12*h/w))))
+
         document.getElementById("eps_eff_result").innerHTML = "<span>ε<sub>r</sub> = </span>" + eps_eff;
     } else if (document.getElementById("waska_linia").checked) {
         stosunek_wh = (8 * Math.pow(Math.E, D)) / (Math.pow(Math.E, 2 * D) - 2)
         w = stosunek_wh * h;
+
         document.getElementById("z0_result").innerHTML = "w = " + w;
         eps_eff = (((eps_r + 1) / 2) + ((eps_r - 1) / 2) * (1 / (sqrt(1 + 12 * h / w))))
+
         document.getElementById("eps_eff_result").innerHTML = "<span>ε<sub>r</sub> = </span>" + eps_eff;
     }
 
 
         lambda = c/(f*sqrt(eps_eff))
+
     document.getElementById("lambda_result").innerHTML = "λ = " + lambda;
     }
 
@@ -100,14 +110,23 @@ document.addEventListener('change', function(e) {
 
 document.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
-        const wValue = document.getElementById("w_parameter").value;
-        const z0Value = document.getElementById("z0_parameter").value;
+        const wInput = document.getElementById("w_parameter");
+        const z0Input = document.getElementById("z0_parameter");
 
-        if (wValue !== "") {
-            analysis_microstripLineCalculator();
-        } else if (z0Value !== "") {
-            synthesis_microstripLineCalculator();
+        if (wInput || z0Input) {
+            event.preventDefault();
+
+
+            const wValue = wInput ? wInput.value : "";
+            const z0Value = z0Input ? z0Input.value : "";
+
+            if (wValue !== "") {
+                analysis_microstripLineCalculator();
+            } else if (z0Value !== "") {
+                synthesis_microstripLineCalculator();
+            }
         }
+
     }
 });
 

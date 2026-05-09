@@ -26,7 +26,7 @@ function impedanceMatchingSSCalculator(RL, XL, Z0){
     } else {
         const denom = Math.pow(RL, 2) + Math.pow(XL, 2);
         if (denom === 0) {
-            alert("R_L i X_L nie mogą być jednocześnie równe 0 dla obwodu równoległego.");
+            alert("Wprowadź poprawne wartości!");
             return;
         }
         r_part = (RL / denom) * Z0;

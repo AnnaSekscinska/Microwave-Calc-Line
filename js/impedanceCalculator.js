@@ -69,7 +69,7 @@ function loadImpedanceCalculator() {
     const sign = zl.im >= 0 ? "+" : "-";
 
     document.getElementById("zl_result").innerHTML =
-        `z<sub>L</sub> = ${zl.re.toFixed(4)} ${sign} ${Math.abs(zl.im).toFixed(4)}j`;
+        `z<sub>L</sub> = ${zl.re.toFixed(5)} ${sign} ${Math.abs(zl.im).toFixed(5)}j`;
 }
 
 document.addEventListener("click", function(event) {

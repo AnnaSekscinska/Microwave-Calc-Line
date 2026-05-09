@@ -160,7 +160,7 @@ export let VSWRCalculation_html = `
         <h2 data-key="titleVSWR">VSWR calculation</h2>
         
         <div class="parameters">
-            <label><span>Z<sub>0</sub> = </span><input type="number" id="Z0_element" value="50"> <span>Ω</span></label>
+            <label><span>Z<sub>0</sub> = </span><input type="number" id="Z0_element"> <span>Ω</span></label>
         </div>
 
         <div class="direction">

@@ -42,8 +42,8 @@ const dic = {
     //L-section matching network
     titleLSN: ["L-section Matching Network", "Układ dopasowujący typu L"],
     // Dictionary
-    titleDictionary: ["Dictionary", "Słownik"]
-
+    titleDictionary: ["Dictionary", "Słownik"],
+    dictionaryParagraph1: ["The most important definitions and formulas", "Najważniejsze wzory i definicje"]
 
 }
 

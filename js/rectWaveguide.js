@@ -26,11 +26,11 @@ function rectHTMLCalculator(a, b, eps_r, m, n, c, fc, mi_r) {
         alert("Wprowadź wszystkie wartości!");
     } else if (eps_r === 1){
         fc = (c/2)*sqrt((m/a)*(m/a)+(n/b)*(n/b));
-        document.getElementById("fc_result").innerHTML = "f<sub>c(m,n)</sub> = " + fc.toFixed(3);
+        document.getElementById("fc_result").innerHTML = "f<sub>c(m,n)</sub> = " + fc.toFixed(5);
         console.log(fc);
     } else {
         fc = ((c/(2*sqrt(eps_r*mi_r)))*sqrt((m/a)*(m/a)+(n/b)*(n/b)));
-        document.getElementById("fc_result").innerHTML = "f<sub>c(m,n)</sub> = " + fc.toFixed(3);
+        document.getElementById("fc_result").innerHTML = "f<sub>c(m,n)</sub> = " + fc.toFixed(5);
         console.log(fc);
     }
     let mList = [0,0,0,1,2,3,1,1,1];
@@ -40,12 +40,12 @@ function rectHTMLCalculator(a, b, eps_r, m, n, c, fc, mi_r) {
     for (let i = 0; i < mList.length; i++) {
         if (eps_r === 1){
             const res = (c/2)*sqrt(((mList[i]/a)*(mList[i]/a))+((nList[i]/b)*(nList[i]/b)));
-            fmn+=`f <sub>c(${mList[i]},${nList[i]})</sub> = ${res.toFixed(3)}<br>`
+            fmn+=`f <sub>c(${mList[i]},${nList[i]})</sub> = ${res.toFixed(5)}<br>`
             document.getElementById("fmn_result").innerHTML = fmn;
             console.log(fmn);
         } else {
             const res = ((c/(2*sqrt(eps_r*mi_r)))*sqrt(((mList[i]/a)*(mList[i]/a))+((nList[i]/b)*(nList[i]/b))))
-            fmn+=`f <sub>c(${mList[i]},${nList[i]})</sub> = ${res}<br>`
+            fmn+=`f <sub>c(${mList[i]},${nList[i]})</sub> = ${res.toFixed(5)}<br>`
             document.getElementById("fmn_result").innerHTML = fmn;
             console.log(fmn);
         }

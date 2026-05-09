@@ -6,12 +6,12 @@
 }
 
 body {
-  background-color: #f2f2f2;
-  color: #333;
+  background-color: #ced4da;
+  color: white;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Roboto', sans-serif;
 }
 
 
@@ -25,6 +25,8 @@ body {
   min-height: 70px;
   display: flex;
   align-items: center;
+  color: #e9ecef;
+  font-size: 10rem;
 }
 
 .header-container {
@@ -41,11 +43,13 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
+
 }
 
 .logo {
   width: 45px;
   height: auto;
+  border-radius: 10%;
 }
 
 nav ul {
@@ -53,6 +57,10 @@ nav ul {
   list-style: none;
   gap: 10px;
   align-items: center;
+}
+
+li {
+  list-style: none;
 }
 
 .flags {
@@ -83,10 +91,11 @@ nav ul {
   padding: 40px 20px;
   flex: 1;
   justify-items: center;
+  /*background-color: #dee2e6; */
 }
 
 .div-calculator {
-  background-color: #ffffff;
+  background-color: #e9ecef;
   border: 1px solid #ccc;
   border-radius: 16px;
   width: 280px;
@@ -124,7 +133,7 @@ nav ul {
   grid-column: 1 / -1;
   display: flex;
   flex-direction: row;
-  background: white;
+  background: #dee2e6;
   padding: 40px;
   border-radius: 20px;
   gap: 50px;
@@ -133,6 +142,11 @@ nav ul {
   max-width: 1100px;
   margin: 0 auto;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+
+}
+
+.menu {
+  font-size: 1.5rem;
 }
 
 .img_Calculator {
@@ -148,6 +162,11 @@ nav ul {
   flex: 1;
   display: flex;
   flex-direction: column;
+  background-color: #e9ecef;
+  border-radius: 20px;
+  justify-content: center;
+  padding: 50px;
+  color: #1d3557;
 }
 
 .content h2 {
@@ -156,6 +175,7 @@ nav ul {
   margin-bottom: 15px;
   border-bottom: 2px solid #457b9d;
   padding-bottom: 10px;
+
 }
 
 
@@ -264,6 +284,8 @@ button {
   width: fit-content;
   font-family: inherit;
   font-size: 0.95rem;
+  background-color: #1d3557;
+  color: #fff;
 }
 
 #VSWRBtn, #Calculatebutton_IMSS, #calculateButton,
@@ -466,7 +488,7 @@ pre, span[id*="result"], #results, #finalResults {
   }
 
   .flags {
-    width: 28px;
+    width: 20px;
     height: 20px;
   }
 
