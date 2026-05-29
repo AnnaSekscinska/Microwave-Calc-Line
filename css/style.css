@@ -136,11 +136,14 @@ li {
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
+.container:has(.dictionary-item) {
+  max-width: 1200px !important;
+}
+
 .menu {
   font-size: 1.5rem;
 }
 
-/* Podstawowy styl pojedynczego obrazka (dla pozostałych podstron) */
 .img_Calculator {
   width: 380px;
   height: auto;
@@ -150,16 +153,13 @@ li {
   object-fit: contain;
 }
 
-/* ==========================================================================
-   NOWE PROFILE DLA PIONOWEGO SKELETONU OBRAZKÓW (Baza globalna)
-   ========================================================================== */
 .calculator-images-sidebar {
   display: flex;
   flex-direction: column;
   gap: 15px;
   flex-shrink: 0;
   position: relative;
-  width: 290px; /* Domyślna szerokość na desktopie */
+  width: 290px;
   max-width: 100%;
 }
 
@@ -182,7 +182,6 @@ li {
 .calculator-images-sidebar.has-active .img_Calculator:not(.enlarged) {
   opacity: 0.4;
 }
-/* ========================================================================== */
 
 .content {
   flex: 1;
@@ -193,6 +192,10 @@ li {
   justify-content: center;
   padding: 50px;
   color: #1d3557;
+}
+
+.content:has(.dictionary-item) {
+  max-width: 100%;
 }
 
 .content h2 {
@@ -366,15 +369,9 @@ pre, span[id*="result"], #results, #finalResults {
   padding: 1.5rem;
 }
 
-
-.parameters {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
 .dictionary-item {
-  width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
   box-sizing: border-box;
   border: 1px solid #d1d5db;
   border-radius: 8px;
@@ -387,7 +384,7 @@ pre, span[id*="result"], #results, #finalResults {
 .dictionary-item summary {
   width: 100%;
   box-sizing: border-box;
-  padding: 16px;
+  padding: 18px 24px;
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
@@ -398,6 +395,7 @@ pre, span[id*="result"], #results, #finalResults {
   justify-content: space-between;
   align-items: center;
   transition: background-color 0.2s;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .dictionary-item summary:hover {
@@ -419,17 +417,18 @@ pre, span[id*="result"], #results, #finalResults {
   content: '-';
 }
 
-
 .item-content {
-  width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
   box-sizing: border-box;
-  padding: 16px;
-  border-top: 1px solid #d1d5db;
-  background-color: #ffffff;
+  padding: 24px;
+  background-color: #f8fafc;
   color: #334155;
   line-height: 1.6;
   overflow-x: auto;
 }
+
+
 
 @media screen and (min-width: 1600px) {
   .main-container {
@@ -437,20 +436,16 @@ pre, span[id*="result"], #results, #finalResults {
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 40px;
   }
-
   .container {
     max-width: 1400px;
     padding: 60px;
   }
-
   .img_Calculator {
     width: 450px;
   }
-
   .calculator-images-sidebar {
     width: 360px;
   }
-
   .content h2 {
     font-size: 2.2rem;
   }
@@ -462,15 +457,12 @@ pre, span[id*="result"], #results, #finalResults {
     gap: 30px;
     padding: 30px;
   }
-
   .img_Calculator {
     width: 320px;
   }
-
   .calculator-images-sidebar {
-    width: 260px; /* Zmniejszenie bocznego paska */
+    width: 260px;
   }
-
   .parameters label {
     grid-template-columns: 140px 1fr 40px;
   }
@@ -480,41 +472,33 @@ pre, span[id*="result"], #results, #finalResults {
   .header-container {
     padding: 0 1rem;
   }
-
   .container {
     flex-direction: column;
     text-align: center;
     padding: 25px;
   }
-
   .img_Calculator {
     width: 280px;
     max-height: 320px;
   }
-
-
   .calculator-images-sidebar {
     width: 100%;
     max-width: 260px;
     margin: 0 auto 20px auto;
   }
-
   .content {
     width: 100%;
     align-items: center;
   }
-
   .parameters {
     width: 100%;
     max-width: 100%;
   }
-
   .parameters label {
     grid-template-columns: 110px 1fr 40px;
     text-align: right;
     gap: 10px;
   }
-
   .main-container {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
@@ -526,59 +510,51 @@ pre, span[id*="result"], #results, #finalResults {
     min-height: auto;
     padding: 1rem 0;
   }
-
   .header-container {
     flex-direction: column;
     gap: 15px;
   }
-
   nav ul {
     flex-wrap: wrap;
     justify-content: center;
   }
-
   .main-header {
     padding: 2rem 1rem;
     height: auto;
   }
-
   .main-container {
     grid-template-columns: 1fr;
     padding: 20px 15px;
   }
-
   .div-calculator {
     width: 100%;
     max-width: 320px;
     height: auto;
     min-height: 260px;
   }
-
   .container {
     padding: 20px;
     border-radius: 14px;
   }
-
   .img_Calculator {
     width: 220px;
   }
-
   .calculator-images-sidebar {
     max-width: 220px;
   }
-
   .content h2 {
     font-size: 1.4rem;
   }
-
   button {
     width: 100%;
   }
-
   .parameters label {
     grid-template-columns: 90px 1fr 35px;
     text-align: right;
     gap: 8px;
+  }
+  .container:has(.dictionary-item) {
+    padding: 15px !important;
   }
 }
 
@@ -586,54 +562,38 @@ pre, span[id*="result"], #results, #finalResults {
   .logo {
     width: 35px;
   }
-
   .flags {
     width: 20px;
     height: 20px;
   }
-
   .content h2 {
     font-size: 1.2rem;
   }
-
   .img_Calculator {
     width: 180px;
   }
-
   .calculator-images-sidebar {
     max-width: 160px;
     gap: 10px;
   }
-
   .parameters label {
     grid-template-columns: 75px 1fr 30px;
     font-size: 0.9rem;
     gap: 6px;
   }
-
   .parameters input[type="number"],
   #dynamicInputs input[type="number"] {
     padding: 6px 8px;
     font-size: 0.9rem;
   }
-
   .container {
     padding: 15px;
     gap: 20px;
   }
-
-  .result,
-  .fcmn_results,
-  .microstripLine_result,
-  #results,
-  #finalResults,
-  .Solution1,
-  .Solution2 {
+  .result, .fcmn_results, .microstripLine_result, #results, #finalResults, .Solution1, .Solution2 {
     padding: 15px;
   }
-
-  pre,
-  span[id*="result"] {
+  pre, span[id*="result"] {
     font-size: 0.9rem;
   }
 }
@@ -644,27 +604,21 @@ pre, span[id*="result"], #results, #finalResults {
     padding: 25px;
     gap: 25px;
   }
-
   .parameters {
     max-width: 100%;
   }
-
   .parameters label {
     grid-template-columns: 70px 1fr 35px;
     gap: 8px;
     font-size: 0.95rem;
   }
-
-  .parameters input[type="number"],
-  #dynamicInputs input[type="number"] {
+  .parameters input[type="number"], #dynamicInputs input[type="number"] {
     padding: 7px 10px;
     font-size: 0.95rem;
   }
-
   .img_Calculator {
     width: 240px;
   }
-
   .content h2 {
     font-size: 1.5rem;
   }
@@ -687,4 +641,26 @@ pre, span[id*="result"], #results, #finalResults {
   .main-container {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+
+/* Dictionary - pełna szerokość kafelków */
+.content:has(.dictionary-item) .parameters {
+  max-width: 100%;
+  width: 100%;
+}
+
+.content:has(.dictionary-item) .dictionary-item {
+  width: 100%;
+  max-width: 100%;
+}
+
+.content:has(.dictionary-item) .dictionary-item summary,
+.content:has(.dictionary-item) .item-content {
+  width: 100%;
+}
+
+.content:has(.dictionary-item) .return {
+  width: 100%;
+  max-width: 100%;
 }
