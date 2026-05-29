@@ -9,12 +9,21 @@ import {dictionary} from "./dictionary";
 import {createMainPage} from "./mainPage";
 import {changeLanguage, curr_lang} from "./languageDictionary";
 
+
+if (!document.getElementById('mathjax-script')) {
+    const script = document.createElement('script');
+    script.id = 'mathjax-script';
+    script.async = true;
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+    document.head.appendChild(script);
+}
+
+
 window.changeLanguage = changeLanguage;
 
 document.addEventListener("DOMContentLoaded", () => {
     changeLanguage(curr_lang);
 })
-
 
 const pageRouter = {
     rectWaveguide: rect_wave(),
@@ -40,14 +49,19 @@ function switchContent() {
     mainContainer.classList.add("main-container");
     mainContainer.id = "main-container";
     console.log(hook);
-    if (hash) {
 
+    if (hash) {
         mainContainer.innerHTML = pageRouter[hash].content;
         hook.after(mainContainer);
     } else {
         createMainPage();
     }
 
+    setTimeout(() => {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise();
+        }
+    }, 50);
 
     if (typeof window.changeLanguage === "function") {
         window.changeLanguage(localStorage.getItem("language") || "pl");
@@ -66,8 +80,6 @@ function switchContent() {
         });
     }
 }
-
-
 
 window.addEventListener('hashchange', switchContent);
 window.addEventListener('load', switchContent);

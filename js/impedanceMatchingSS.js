@@ -2,10 +2,7 @@ export function impedanceMatchingSS() {
     return{hash: "#rect_wave", content: impedanceMatchingSS_html}
 }
 
-
-
 function impedanceMatchingSSCalculator(RL, XL, Z0){
-
     RL = document.getElementById("RL_element").value;
     XL = document.getElementById("XL_element").value;
     Z0 = document.getElementById("Z0_element").value;
@@ -18,7 +15,6 @@ function impedanceMatchingSSCalculator(RL, XL, Z0){
     const isOpen = document.getElementById("szer_rozw").checked || document.getElementById("row_rozw").checked;
 
     let r_part, x_part;
-
 
     if (isSeries) {
         r_part = RL / Z0;
@@ -39,7 +35,6 @@ function impedanceMatchingSSCalculator(RL, XL, Z0){
 
     let t_values = [];
 
-
     if (Math.abs(A) < 1e-9) {
         if (Math.abs(B) < 1e-9) {
             t_values = [0, 0];
@@ -59,16 +54,12 @@ function impedanceMatchingSSCalculator(RL, XL, Z0){
         ];
     }
 
-
     const solutions = t_values.map(t => {
-
         let d_lam;
         if (!isFinite(t)) {
             d_lam = 0.25;
         } else {
             d_lam = Math.atan(t) / (2 * Math.PI);
-
-
             if (d_lam <= 0) d_lam += 0.5;
         }
 
@@ -90,7 +81,6 @@ function impedanceMatchingSSCalculator(RL, XL, Z0){
                 Math.atan(-1 / stub_val) / (2 * Math.PI);
         }
 
-
         if (l_lam <= 0) l_lam += 0.5;
 
         return { d: d_lam, l: l_lam };
@@ -108,14 +98,36 @@ document.addEventListener("click", function(event) {
     }
 });
 
+// POPRAWIONA LOGIKA CHANGERÓW DLA CHECKBOXÓW I OBRAZKÓW
 document.addEventListener('change', function(e) {
     if (e.target.type === 'checkbox' && (e.target.closest('.direction') || e.target.closest('.parameters'))) {
         const parent = e.target.closest('.direction') || e.target.closest('.parameters');
         const checkboxes = parent.querySelectorAll('input[type="checkbox"]');
 
+        // Wykluczanie pozostałych checkboxów
         checkboxes.forEach(cb => {
             if (cb !== e.target) cb.checked = false;
         });
+
+        // Obsługa powiększania obrazków
+        const sidebar = document.querySelector('.calculator-images-sidebar');
+        if (sidebar) {
+            const images = sidebar.querySelectorAll('.img_Calculator');
+
+            // Czyszczenie poprzednich stanów aktywacji
+            images.forEach(img => img.classList.remove('enlarged'));
+            sidebar.classList.remove('has-active');
+
+            // Szukanie aktualnie zaznaczonego checkboxa
+            const checkedBox = parent.querySelector('input[type="checkbox"]:checked');
+            if (checkedBox) {
+                sidebar.classList.add('has-active');
+                const targetImg = document.getElementById('img_' + checkedBox.id);
+                if (targetImg) {
+                    targetImg.classList.add('enlarged');
+                }
+            }
+        }
     }
 });
 
@@ -128,10 +140,13 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-
-
 export let impedanceMatchingSS_html = "<div class=\"container\">\n" +
-    "<img class='img_Calculator' src='img/SS.png'/>\n" +
+    "  <div class=\"calculator-images-sidebar\">\n" +
+    "    <img class='img_Calculator' id='img_szer_rozw' src='img/SS1.png'/>\n" +
+    "    <img class='img_Calculator' id='img_szer_zw' src='img/SS2.png'/>\n" +
+    "    <img class='img_Calculator' id='img_row_rozw' src='img/SS3.png'/>\n" +
+    "    <img class='img_Calculator' id='img_row_zw' src='img/SS4.png'/>\n" +
+    "  </div>\n" +
     "<div class=\"content\">\n" +
     "  <h2 data-key='titleSS'>Single Stub Matching Circuit</h2>\n" +
     "\n" +
@@ -167,5 +182,5 @@ export let impedanceMatchingSS_html = "<div class=\"container\">\n" +
     "  </div>\n" +
     "\n" +
     "  <button id=\"returnButton\" class=\"return\" data-key='buttonRtn'>Return to Main Menu</button>\n" +
-    "</div>\n"
-
+    "</div>\n" +
+    "</div>\n";

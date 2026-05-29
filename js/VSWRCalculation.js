@@ -2,7 +2,6 @@ export function VSWRCalculation() {
     return {hash: "#VSWRCalculation", content: VSWRCalculation_html}
 }
 
-
 document.addEventListener('change', function(e) {
     if (e.target && e.target.name === 'paramType') {
         const container = document.getElementById('dynamicInputs');
@@ -22,7 +21,6 @@ document.addEventListener('change', function(e) {
     }
 });
 
-
 function fmt(n) {
     if (typeof n !== 'number' || isNaN(n)) return n;
     if (!isFinite(n)) return "+infinity";
@@ -40,7 +38,6 @@ function VSWRCalculation_calculator() {
 
     let ReG, ImG;
 
-
     switch(selected.value) {
         case 'vswr':
             let absG_v = (val1 - 1) / (val1 + 1);
@@ -52,7 +49,8 @@ function VSWRCalculation_calculator() {
             ImG = val1 * Math.sin(val2 * toRad);
             break;
         case 'reImG':
-            ReG = val1; ImG = val2;
+            ReG = val1;
+            ImG = val2;
             break;
         case 'rxNorm':
             let Mz = Math.pow(val1 + 1, 2) + Math.pow(val2, 2);
@@ -78,19 +76,23 @@ function VSWRCalculation_calculator() {
             break;
     }
 
-
     let currentAbsG = Math.sqrt(ReG**2 + ImG**2);
+
+    if (currentAbsG > 1) {
+        ReG = ReG / currentAbsG;
+        ImG = ImG / currentAbsG;
+        currentAbsG = 1;
+    }
+
     let argG_deg = Math.atan2(ImG, ReG) / toRad;
 
-
     const Dz = Math.pow(1 - ReG, 2) + Math.pow(ImG, 2);
-    let r_calc = (1 - Math.pow(ReG, 2) - Math.pow(ImG, 2)) / Dz;
-    let x_calc = (2 * ImG) / Dz;
+    let r_calc = (Dz === 0) ? 0 : (1 - Math.pow(ReG, 2) - Math.pow(ImG, 2)) / Dz;
+    let x_calc = (Dz === 0) ? 0 : (2 * ImG) / Dz;
 
     const Dy = Math.pow(1 + ReG, 2) + Math.pow(ImG, 2);
-    let g_calc = (1 - Math.pow(ReG, 2) - Math.pow(ImG, 2)) / Dy;
-    let b_calc = (-2 * ImG) / Dy;
-
+    let g_calc = (Dy === 0) ? 0 : (1 - Math.pow(ReG, 2) - Math.pow(ImG, 2)) / Dy;
+    let b_calc = (Dy === 0) ? 0 : (-2 * ImG) / Dy;
 
     let displayAbsG = currentAbsG;
     let displayVSWR = (1 + currentAbsG) / (1 - currentAbsG);
@@ -103,7 +105,6 @@ function VSWRCalculation_calculator() {
         displayR = 0;
         displayG = 0;
     }
-
 
     document.getElementById('results').innerHTML = `
         <div style="text-align: center; padding: 15px; font-family: monospace; line-height: 2; white-space: pre;">
@@ -124,13 +125,11 @@ G: ${fmt(displayG / Z0)} S, +jB: ${fmt(b_calc / Z0)} S
     `;
 }
 
-
 document.addEventListener("click", function(event) {
     if (event.target && event.target.id === "VSWRBtn") {
         VSWRCalculation_calculator();
     }
 });
-
 
 document.addEventListener('change', function(e) {
     if (e.target.type === 'checkbox' && (e.target.closest('.direction') || e.target.closest('.parameters'))) {
@@ -152,16 +151,15 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-
 export let VSWRCalculation_html = `
 <div class="container">
     <img class='img_Calculator' src='img/VSWR.png'/>
     <div class="content">
         <h2 data-key="titleVSWR">VSWR calculation</h2>
         
-        <div class="parameters">
-            <label><span>Z<sub>0</sub> = </span><input type="number" id="Z0_element"> <span>Ω</span></label>
-        </div>
+            <div class="parameters">
+                <label><span>Z<sub>0</sub> = </span><input type="number" id="Z0_element"> <span>Ω</span></label>
+            </div>
 
         <div class="direction">
             <p data-key="paragraphVSWR">Pick the parameter to enter:</p>

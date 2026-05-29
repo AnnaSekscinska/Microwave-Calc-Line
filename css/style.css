@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +12,6 @@ body {
   min-height: 100vh;
   font-family: 'Inter', 'Roboto', sans-serif;
 }
-
-
 
 .header {
   background-color: #1d3557;
@@ -43,7 +40,6 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
-
 }
 
 .logo {
@@ -71,16 +67,13 @@ li {
   display: block;
 }
 
-
 .main-header {
   text-align: center;
   padding: 2.5rem 1rem;
   background-color: #e6e6e6;
   border-bottom: 2px solid #ccc;
   height: 30px;
-
 }
-
 
 .main-container {
   display: grid;
@@ -91,7 +84,6 @@ li {
   padding: 40px 20px;
   flex: 1;
   justify-items: center;
-  /*background-color: #dee2e6; */
 }
 
 .div-calculator {
@@ -129,7 +121,7 @@ li {
   margin-top: 10px;
 }
 
- .container {
+.container {
   grid-column: 1 / -1;
   display: flex;
   flex-direction: row;
@@ -142,13 +134,13 @@ li {
   max-width: 1100px;
   margin: 0 auto;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-
 }
 
 .menu {
   font-size: 1.5rem;
 }
 
+/* Podstawowy styl pojedynczego obrazka (dla pozostałych podstron) */
 .img_Calculator {
   width: 380px;
   height: auto;
@@ -157,6 +149,40 @@ li {
   border-radius: 10px;
   object-fit: contain;
 }
+
+/* ==========================================================================
+   NOWE PROFILE DLA PIONOWEGO SKELETONU OBRAZKÓW (Baza globalna)
+   ========================================================================== */
+.calculator-images-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-shrink: 0;
+  position: relative;
+  width: 290px; /* Domyślna szerokość na desktopie */
+  max-width: 100%;
+}
+
+.calculator-images-sidebar .img_Calculator {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 2px solid transparent;
+  border-radius: 10px;
+}
+
+.calculator-images-sidebar .img_Calculator.enlarged {
+  transform: scale(1.06);
+  z-index: 10;
+  opacity: 1 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border-color: #1d3557;
+}
+
+.calculator-images-sidebar.has-active .img_Calculator:not(.enlarged) {
+  opacity: 0.4;
+}
+/* ========================================================================== */
 
 .content {
   flex: 1;
@@ -175,9 +201,7 @@ li {
   margin-bottom: 15px;
   border-bottom: 2px solid #457b9d;
   padding-bottom: 10px;
-
 }
-
 
 .parameters {
   display: flex;
@@ -218,7 +242,7 @@ li {
   box-sizing: border-box;
 }
 
-.container-checkbox{
+.container-checkbox {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -240,7 +264,7 @@ li {
   padding: 5px 0;
 }
 
-.container-button{
+.container-button {
   display: flex;
   gap: 10px;
   margin: 15px 0;
@@ -257,7 +281,6 @@ li {
 
 .direction label,
 .parameters label:has(input[type="checkbox"]),
-/*.parameters label:has(input[type="radio"]), */
 #dynamicInputs label {
   display: flex;
   align-items: center;
@@ -272,7 +295,6 @@ input[type="radio"], input[type="checkbox"] {
   accent-color: #1d3557;
   cursor: pointer;
 }
-
 
 button {
   padding: 12px 24px;
@@ -312,7 +334,6 @@ button:hover {
   max-width: 480px;
 }
 
-
 .result, .fcmn_results, .microstripLine_result,
 #results, #finalResults, .Solution1, .Solution2 {
   margin-top: 20px;
@@ -337,13 +358,77 @@ pre, span[id*="result"], #results, #finalResults {
   word-break: break-all;
 }
 
-
 .footer {
   margin-top: auto;
   text-align: center;
   background-color: #1d3557;
   color: #ccc;
   padding: 1.5rem;
+}
+
+
+.parameters {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dictionary-item {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.dictionary-item summary {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #f8fafc;
+  color: #1e293b;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.dictionary-item summary:hover {
+  background-color: #f1f5f9;
+}
+
+.dictionary-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.dictionary-item summary::after {
+  content: '+';
+  font-size: 20px;
+  font-weight: bold;
+  color: #64748b;
+}
+
+.dictionary-item[open] summary::after {
+  content: '-';
+}
+
+
+.item-content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  border-top: 1px solid #d1d5db;
+  background-color: #ffffff;
+  color: #334155;
+  line-height: 1.6;
+  overflow-x: auto;
 }
 
 @media screen and (min-width: 1600px) {
@@ -362,11 +447,14 @@ pre, span[id*="result"], #results, #finalResults {
     width: 450px;
   }
 
+  .calculator-images-sidebar {
+    width: 360px;
+  }
+
   .content h2 {
     font-size: 2.2rem;
   }
 }
-
 
 @media screen and (max-width: 1200px) {
   .container {
@@ -379,11 +467,14 @@ pre, span[id*="result"], #results, #finalResults {
     width: 320px;
   }
 
+  .calculator-images-sidebar {
+    width: 260px; /* Zmniejszenie bocznego paska */
+  }
+
   .parameters label {
     grid-template-columns: 140px 1fr 40px;
   }
 }
-
 
 @media screen and (max-width: 992px) {
   .header-container {
@@ -399,6 +490,13 @@ pre, span[id*="result"], #results, #finalResults {
   .img_Calculator {
     width: 280px;
     max-height: 320px;
+  }
+
+
+  .calculator-images-sidebar {
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto 20px auto;
   }
 
   .content {
@@ -422,7 +520,6 @@ pre, span[id*="result"], #results, #finalResults {
     gap: 20px;
   }
 }
-
 
 @media screen and (max-width: 768px) {
   .header {
@@ -466,6 +563,10 @@ pre, span[id*="result"], #results, #finalResults {
     width: 220px;
   }
 
+  .calculator-images-sidebar {
+    max-width: 220px;
+  }
+
   .content h2 {
     font-size: 1.4rem;
   }
@@ -480,7 +581,6 @@ pre, span[id*="result"], #results, #finalResults {
     gap: 8px;
   }
 }
-
 
 @media screen and (max-width: 480px) {
   .logo {
@@ -498,6 +598,11 @@ pre, span[id*="result"], #results, #finalResults {
 
   .img_Calculator {
     width: 180px;
+  }
+
+  .calculator-images-sidebar {
+    max-width: 160px;
+    gap: 10px;
   }
 
   .parameters label {
