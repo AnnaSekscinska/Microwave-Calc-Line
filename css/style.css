@@ -644,7 +644,6 @@ pre, span[id*="result"], #results, #finalResults {
 }
 
 
-/* Dictionary - pełna szerokość kafelków */
 .content:has(.dictionary-item) .parameters {
   max-width: 100%;
   width: 100%;
